@@ -1,0 +1,10 @@
+title: "まかないシェフ｜賞味期限管理・使い切りレシピ"
+description: "賞味期限が近づいたらDiscord Botがお知らせ。そのまま使い切りレシピにたどり着けます。"
+url: "https://REPLACE-WITH-USERNAME.github.io"
+baseurl: ""
+lang: ja
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+markdown: kramdown
+permalink: /:title/
