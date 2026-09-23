@@ -21,3 +21,45 @@ h1{font-size:26px;line-height:1.4;}
 .cat-cards span{ display:block; font-size:11.5px; color:#948c79; line-height:1.6; }
 main a{ color:var(--brand); }
 .site-footer a{ color:var(--brand); }
+
+
+/* ===== Hero（案E：参考LP再現・2026-09-23 独立レビュー反映済み） ===== */
+.hero-band{
+  background:var(--brand-soft);
+  width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw;
+  padding:44px 24px 40px;
+  text-align:center;
+}
+.hero-band .eyebrow{ margin-bottom:14px; }
+.hero-band h1{ font-size:26px; font-weight:800; line-height:1.4; margin:0 0 14px; letter-spacing:-.01em; }
+.hero-band .sub{ font-size:13.5px; color:#4c4638; line-height:1.85; margin:0 auto 18px; max-width:440px; }
+
+.hero-flow{ display:flex; gap:8px; justify-content:center; max-width:480px; margin:0 auto 20px; flex-wrap:wrap; }
+.hero-flow div{ flex:1; min-width:120px; background:#fff; border-radius:10px; padding:10px 8px 9px; font-size:11.5px; line-height:1.5; }
+.hero-flow b{ display:block; font-size:12px; margin-bottom:2px; }
+
+.hero-visual{ position:relative; display:flex; align-items:center; justify-content:center; height:270px; margin:0 auto 10px; }
+.hero-oval{ position:absolute; width:246px; height:246px; background:#fff; border-radius:50%; }
+.hero-phone{ position:relative; z-index:1; width:172px; background:#25231F; border-radius:30px; padding:10px; box-shadow:0 20px 36px rgba(37,35,31,.28); }
+.hero-phone::before{ content:""; position:absolute; top:10px; left:50%; transform:translateX(-50%); width:44px; height:5px; border-radius:3px; background:#000; opacity:.35; }
+.hero-screen{ background:#fff; border-radius:22px; padding:20px 10px 11px; text-align:left; display:flex; flex-direction:column; gap:7px; }
+.hero-appbar{ display:flex; align-items:center; gap:6px; font-size:9px; font-weight:700; color:var(--brand); }
+.hero-appbar .dot{ width:5px; height:5px; border-radius:50%; background:#3ba55d; margin-left:auto; }
+.hero-msg{ display:flex; gap:6px; }
+.hero-avatar{ width:20px; height:20px; border-radius:50%; background:var(--brand); color:#fff; font-size:9px; display:flex; align-items:center; justify-content:center; flex:none; }
+.hero-bubble{ background:var(--brand-soft); border-radius:9px 9px 9px 3px; padding:8px 9px; font-size:9px; line-height:1.55; }
+.hero-bubble-recipe{ margin-left:26px; background:#F4F0E4; border-radius:9px 9px 9px 3px; padding:7px; display:flex; gap:6px; align-items:center; }
+.hero-bubble-recipe .thumb{ width:28px; height:28px; border-radius:6px; background:var(--brand-soft); display:flex; align-items:center; justify-content:center; font-size:13px; flex:none; }
+.hero-bubble-recipe .txt{ font-size:8px; line-height:1.4; }
+.hero-msg-cta{ margin-left:26px; background:var(--cta); color:#fff; text-align:center; font-size:8.5px; font-weight:700; border-radius:7px; padding:7px; }
+
+.hero-callout{ font-size:11.5px; color:var(--brand); font-weight:700; margin:0 0 14px; }
+.hero-band .btn-primary{ border-radius:30px; }
+.hero-badges{ display:flex; gap:14px; justify-content:center; margin:20px 0 12px; }
+.seal{ width:68px; height:68px; border-radius:50%; border:2px solid var(--brand); outline:1px solid rgba(53,92,69,.25); outline-offset:3px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#fff; }
+.seal .ic{ font-size:12px; }
+.seal b{ font-size:7.5px; color:#6b6355; font-weight:600; display:block; }
+.seal .big{ font-size:11.5px; font-weight:800; color:var(--brand); line-height:1.2; }
+.hero-finenote{ display:block; font-size:10.5px; color:#6b6355; max-width:420px; margin:0 auto; line-height:1.7; }
+
+.nav-cta{ background:var(--brand); color:#fff !important; padding:7px 16px; border-radius:20px; font-size:12.5px; font-weight:700; margin-left:16px; }
