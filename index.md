@@ -4,7 +4,7 @@ title: "まかないシェフ｜賞味期限のお知らせから、使い切る
 permalink: /
 ---
 
-<div class="hero-band">
+<div class="hero-band" markdown="1">
 <p class="eyebrow">賞味期限管理Discord Bot「まかないシェフ」</p>
 
 # 賞味期限、もう覚えてなくていい。
