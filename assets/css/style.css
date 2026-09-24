@@ -64,3 +64,22 @@ main a{ color:var(--brand); }
 .hero-finenote{ display:block; font-size:10.5px; color:#6b6355; max-width:420px; margin:0 auto; line-height:1.7; }
 
 .nav-cta{ background:var(--brand); color:#fff !important; padding:7px 16px; border-radius:20px; font-size:12.5px; font-weight:700; margin-left:16px; }
+
+/* ===== Hero: PC(横幅の広い画面)では2カラム、モバイルでは縦積み ===== */
+.hero-grid{ max-width:520px; margin:0 auto; }
+
+@media (min-width:860px){
+  .hero-band{ padding:70px 56px 76px; }
+  .hero-grid{ display:flex; align-items:center; gap:50px; max-width:1080px; margin:0 auto; text-align:left; }
+  .hero-copy{ flex:1; }
+  .hero-band h1{ font-size:41px; margin:0 0 18px; }
+  .hero-band .sub{ margin:0 0 22px; max-width:400px; }
+  .hero-flow{ justify-content:flex-start; margin:0 0 22px; max-width:420px; }
+  .hero-callout{ margin:0 0 20px; text-align:left; }
+  .hero-badges{ justify-content:flex-start; margin:0 0 12px; }
+  .hero-finenote{ text-align:left; margin:0; max-width:400px; }
+  .hero-visual{ flex:1; height:360px; margin:0; }
+  .hero-oval{ width:330px; height:330px; }
+  .hero-phone{ width:196px; transform:rotate(-4deg); }
+  .hero-screen{ padding:24px 11px 13px; }
+}

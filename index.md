@@ -5,6 +5,8 @@ permalink: /
 ---
 
 <div class="hero-band">
+<div class="hero-grid">
+<div class="hero-copy">
 <p class="eyebrow">賞味期限管理Discord Bot「まかないシェフ」</p>
 <h1>賞味期限、もう覚えてなくていい。</h1>
 <p class="sub">賞味期限が近づいたらまかないシェフが知らせてくれて、そこからレシピにたどり着く。<br>登録・お知らせ・内蔵レシピ検索は無料で、AIレシピや写真スキャンも無料枠（回数制限あり）でお使いいただけます。<br>すべてDiscordの中だけで完結します。</p>
@@ -13,6 +15,17 @@ permalink: /
   <div><b>①登録</b>食材と賞味期限を伝える</div>
   <div><b>②通知</b>期限が近づくとお知らせ</div>
   <div><b>③レシピ</b>そのままレシピを提案</div>
+</div>
+
+<p class="hero-callout">＼ 設定はDiscordに追加するだけ ／</p>
+
+<a class="btn-primary" href="https://discord.com/oauth2/authorize?client_id=1546140293248716831&permissions=19456&scope=bot+applications.commands">まかないシェフを無料で試す →</a>
+
+<div class="hero-badges">
+  <div class="seal"><span class="ic">🔰</span><b>登録・利用</b><span class="big">0円から</span></div>
+  <div class="seal"><span class="ic">⚡</span><b>追加は</b><span class="big">最短1分</span></div>
+</div>
+<span class="hero-finenote">登録・通知・内蔵レシピ検索は無料。AIレシピ・写真スキャンは無料枠（回数制限あり）、さらに使いたい方向けにプレミアムプラン（月額480円）もあります。</span>
 </div>
 
 <div class="hero-visual">
@@ -32,16 +45,7 @@ permalink: /
     </div>
   </div>
 </div>
-
-<p class="hero-callout">＼ 設定はDiscordに追加するだけ ／</p>
-
-<a class="btn-primary" href="https://discord.com/oauth2/authorize?client_id=1546140293248716831&permissions=19456&scope=bot+applications.commands">まかないシェフを無料で試す →</a>
-
-<div class="hero-badges">
-  <div class="seal"><span class="ic">🔰</span><b>登録・利用</b><span class="big">0円から</span></div>
-  <div class="seal"><span class="ic">⚡</span><b>追加は</b><span class="big">最短1分</span></div>
 </div>
-<span class="hero-finenote">登録・通知・内蔵レシピ検索は無料。AIレシピ・写真スキャンは無料枠（回数制限あり）、さらに使いたい方向けにプレミアムプラン（月額480円）もあります。</span>
 </div>
 
 ## 記事で先に調べる
