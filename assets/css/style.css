@@ -1,5 +1,5 @@
 :root{
-  --bg:#F7F3EA; --text:#25231F; --brand:#355C45; --brand-soft:#E7EEE6; --cta:#D85C32; --border:#D9D0C0;
+  --bg:#F2F3F5; --text:#23272A; --brand:#355C45; --brand-soft:#E7EEE6; --cta:#5865F2; --border:#E3E5E8;
 }
 *{box-sizing:border-box;}
 body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;line-height:1.7;}
@@ -9,10 +9,11 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,B
 main{max-width:760px;margin:0 auto;padding:32px 24px;}
 h1{font-size:26px;line-height:1.4;}
 .eyebrow{color:var(--brand);font-weight:700;font-size:12px;letter-spacing:.05em;}
-.btn-primary{display:inline-block;background:var(--cta);color:#fff;font-weight:700;padding:14px 22px;border-radius:10px;text-decoration:none;margin-top:12px;}
+.btn-primary{display:inline-block;background:var(--brand);color:#fff;font-weight:700;padding:14px 22px;border-radius:10px;text-decoration:none;margin-top:12px;}
 .flow{display:flex;gap:10px;margin:24px 0;flex-wrap:wrap;}
 .flow div{flex:1;min-width:140px;background:var(--brand-soft);border-radius:10px;padding:14px;}
 .site-footer{max-width:760px;margin:0 auto;padding:20px 24px 40px;font-size:12px;color:#6b6355;border-top:1px solid var(--border);}
+.site-footer .links{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0;}
 
 .cat-cards{ display:flex; gap:14px; flex-wrap:wrap; margin:20px 0 8px; }
 .cat-cards .cat-card{ flex:1; min-width:160px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:16px 14px; }
@@ -26,7 +27,7 @@ main a{ color:var(--brand); }
 /* ===== Hero（案E：参考LP再現・2026-09-23 独立レビュー反映済み） ===== */
 .hero-band{
   background:var(--brand-soft);
-  width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw;
+  width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; margin-top:-32px;
   padding:44px 24px 40px;
   text-align:center;
 }
