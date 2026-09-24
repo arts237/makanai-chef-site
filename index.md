@@ -30,20 +30,7 @@ permalink: /
 
 <div class="hero-visual">
   <div class="hero-oval"></div>
-  <div class="hero-phone">
-    <div class="hero-screen">
-      <div class="hero-appbar">🍳 まかないシェフ<span class="dot"></span></div>
-      <div class="hero-msg">
-        <div class="hero-avatar">🍳</div>
-        <div class="hero-bubble">🔔 豚肉、賞味期限まであと1日です。そろそろ使い切りましょう。</div>
-      </div>
-      <div class="hero-bubble-recipe">
-        <div class="thumb">🍳</div>
-        <div class="txt">豚肉と野菜の<br>スタミナ炒め</div>
-      </div>
-      <div class="hero-msg-cta">🍳 使い切るレシピを提案してもらう</div>
-    </div>
-  </div>
+  <img class="hero-phone-img" src="{{ '/assets/images/hero-phone.png' | relative_url }}" alt="Discordで「まかないシェフ」が賞味期限のお知らせを送っている画面のスクリーンショット" width="431" height="666" loading="eager">
 </div>
 </div>
 </div>

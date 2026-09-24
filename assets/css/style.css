@@ -39,20 +39,9 @@ main a{ color:var(--brand); }
 .hero-flow div{ flex:1; min-width:120px; background:#fff; border-radius:10px; padding:10px 8px 9px; font-size:11.5px; line-height:1.5; }
 .hero-flow b{ display:block; font-size:12px; margin-bottom:2px; }
 
-.hero-visual{ position:relative; display:flex; align-items:center; justify-content:center; height:270px; margin:0 auto 10px; }
-.hero-oval{ position:absolute; width:246px; height:246px; background:#fff; border-radius:50%; }
-.hero-phone{ position:relative; z-index:1; width:172px; background:#25231F; border-radius:30px; padding:10px; box-shadow:0 20px 36px rgba(37,35,31,.28); }
-.hero-phone::before{ content:""; position:absolute; top:10px; left:50%; transform:translateX(-50%); width:44px; height:5px; border-radius:3px; background:#000; opacity:.35; }
-.hero-screen{ background:#fff; border-radius:22px; padding:20px 10px 11px; text-align:left; display:flex; flex-direction:column; gap:7px; }
-.hero-appbar{ display:flex; align-items:center; gap:6px; font-size:9px; font-weight:700; color:var(--brand); }
-.hero-appbar .dot{ width:5px; height:5px; border-radius:50%; background:#3ba55d; margin-left:auto; }
-.hero-msg{ display:flex; gap:6px; }
-.hero-avatar{ width:20px; height:20px; border-radius:50%; background:var(--brand); color:#fff; font-size:9px; display:flex; align-items:center; justify-content:center; flex:none; }
-.hero-bubble{ background:var(--brand-soft); border-radius:9px 9px 9px 3px; padding:8px 9px; font-size:9px; line-height:1.55; }
-.hero-bubble-recipe{ margin-left:26px; background:#F4F0E4; border-radius:9px 9px 9px 3px; padding:7px; display:flex; gap:6px; align-items:center; }
-.hero-bubble-recipe .thumb{ width:28px; height:28px; border-radius:6px; background:var(--brand-soft); display:flex; align-items:center; justify-content:center; font-size:13px; flex:none; }
-.hero-bubble-recipe .txt{ font-size:8px; line-height:1.4; }
-.hero-msg-cta{ margin-left:26px; background:var(--cta); color:#fff; text-align:center; font-size:8.5px; font-weight:700; border-radius:7px; padding:7px; }
+.hero-visual{ position:relative; display:flex; align-items:center; justify-content:center; height:320px; margin:0 auto 10px; }
+.hero-oval{ position:absolute; width:220px; height:220px; background:#fff; border-radius:50%; }
+.hero-phone-img{ position:relative; z-index:1; width:200px; height:auto; display:block; max-width:100%; }
 
 .hero-callout{ font-size:11.5px; color:var(--brand); font-weight:700; margin:0 0 14px; }
 .hero-band .btn-primary{ border-radius:30px; }
@@ -78,8 +67,7 @@ main a{ color:var(--brand); }
   .hero-callout{ margin:0 0 20px; text-align:left; }
   .hero-badges{ justify-content:flex-start; margin:0 0 12px; }
   .hero-finenote{ text-align:left; margin:0; max-width:400px; }
-  .hero-visual{ flex:1; height:360px; margin:0; }
-  .hero-oval{ width:330px; height:330px; }
-  .hero-phone{ width:196px; transform:rotate(-4deg); }
-  .hero-screen{ padding:24px 11px 13px; }
+  .hero-visual{ flex:1; height:380px; margin:0; }
+  .hero-oval{ width:300px; height:300px; }
+  .hero-phone-img{ width:230px; }
 }
