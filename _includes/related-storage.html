@@ -1,0 +1,10 @@
+{% assign rel = site.pages | where: "category_url", "/storage/" | where_exp: "p", "p.url != '/storage/'" | where_exp: "p", "p.url != page.url" | where_exp: "p", "p.url != '/storage/freezer-basics/'" | sort: "order" %}
+<div class="a-related">
+  <h2>食材別の冷凍保存</h2>
+  <ul class="a-list">
+  {% for p in rel %}
+    <li><a href="{{ p.url | relative_url }}">{{ p.short_title | default: p.title }}</a></li>
+  {% endfor %}
+    <li><a href="{{ '/storage/' | relative_url }}">保存方法ガイド（記事一覧）</a></li>
+  </ul>
+</div>

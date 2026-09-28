@@ -1,19 +1,27 @@
 ---
 layout: article
 title: "保存方法ガイド"
-description: "食材を無駄にしないための保存方法をまとめています。冷凍・冷蔵の基本から、食材ごとの保存のコツまで。"
+description: "食材を無駄にしないための冷凍保存の方法をまとめています。冷凍の基本から、豚肉・鶏むね肉・ひき肉・キャベツ・ご飯など食材ごとのコツまで。"
 permalink: /storage/
 category_name: "保存方法"
 category_url: /storage/
 date: 2026-09-29
-noindex: true
 ---
 
-<p class="a-lead">食材を無駄にしないための保存方法をまとめています。</p>
+<p class="a-lead">買った食材を使い切れずに捨ててしまう前に。まずは冷凍の基本を押さえて、よく使う食材は食材ごとのコツを見てみてください。どの記事も、冒頭の「結論」だけで答えが分かるようにしています。</p>
 
+{% assign all = site.pages | where: "category_url", "/storage/" | where_exp: "p", "p.url != '/storage/'" | sort: "order" %}
+
+<h2>まずはここから</h2>
 <ul class="a-list">
-{% assign items = site.pages | where: "category_url", "/storage/" | where_exp: "p", "p.url != '/storage/'" | sort: "date" | reverse %}
-{% for p in items %}
+{% for p in all %}{% if p.order == 0 %}
   <li><a href="{{ p.url | relative_url }}">{{ p.title }}<small>{{ p.description }}</small></a></li>
-{% endfor %}
+{% endif %}{% endfor %}
+</ul>
+
+<h2>食材別の冷凍保存</h2>
+<ul class="a-list">
+{% for p in all %}{% if p.order > 0 %}
+  <li><a href="{{ p.url | relative_url }}">{{ p.title }}<small>{{ p.description }}</small></a></li>
+{% endif %}{% endfor %}
 </ul>
