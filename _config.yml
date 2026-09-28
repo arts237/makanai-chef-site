@@ -8,3 +8,5 @@ plugins:
   - jekyll-seo-tag
 markdown: kramdown
 permalink: /:title/
+# Amazonアソシエイトのトラッキングタグ（例: xxxxx-22）。記事内のAmazonリンクに自動で付与される
+amazon_tag: "makanai01-22"
