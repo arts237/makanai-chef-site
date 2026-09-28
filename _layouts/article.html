@@ -39,7 +39,8 @@
     </nav>
 
     <article class="a-article">
-      <h1>{{ page.title }}</h1>
+      {% assign tparts = page.title | split: "｜" %}
+      <h1>{% if tparts.size == 2 %}<span class="a-t">{{ tparts[0] }}｜</span><span class="a-t">{{ tparts[1] }}</span>{% else %}{{ page.title }}{% endif %}</h1>
       <p class="a-meta">
         公開日 <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%Y年%-m月%-d日' }}</time>
         {% if page.last_modified_at %}／更新日 <time datetime="{{ page.last_modified_at | date: '%Y-%m-%d' }}">{{ page.last_modified_at | date: '%Y年%-m月%-d日' }}</time>{% endif %}
