@@ -1,0 +1,138 @@
+---
+layout: article
+title: "買った食材を使い切る｜保存のコツと道具"
+short_title: "保存のコツと道具"
+description: "まかないシェフの買い足し提案から来た方向けのページです。買った食材を最後まで使い切るための保存のコツと、あると便利な保存グッズ・常備食材をまとめました。"
+permalink: /shopping/
+category_name: "買い足しガイド"
+category_url: /shopping/
+image: /assets/images/lp/hero-pc.png
+date: 2026-09-29
+has_pr: true
+noindex: true
+---
+
+<div class="a-answer" id="bot-items" hidden>
+  <span class="a-answer-label">今回の買い足し候補</span>
+  <ul id="bot-items-list"></ul>
+  <p class="a-note" style="margin:10px 0 0">買ったら <code>/expiry add</code> で期限を登録しておくと、前日と当日の朝にDMでお知らせします。</p>
+</div>
+
+<p class="a-lead">まかないシェフの買い足し提案から来た方へ。買った食材を最後まで使い切るための、保存のコツと道具をまとめました。肉や野菜などの生鮮食材は、近所のお店で必要な分だけ買うのがいちばんです。</p>
+
+<h2>鮮度を保ちやすくする保存グッズ</h2>
+<p>使い切れない分は、買ってきた日のうちに小分けして冷凍しておくと安心です。そのときに使う道具です。</p>
+<div class="a-tools">
+  <div class="a-tool">
+    <div class="a-tool-head"><b>冷凍用の保存袋</b><span class="a-pr">PR</span></div>
+    <p>肉や刻んだ野菜を入れて、空気を抜いて薄く平らに。冷凍保存の基本の道具です。</p>
+    {% include amazon-link.html q="冷凍用 保存袋 ジッパー" %}
+  </div>
+  <div class="a-tool">
+    <div class="a-tool-head"><b>ラップ</b><span class="a-pr">PR</span></div>
+    <p>ひき肉やご飯を1回分ずつ包むのに使います。</p>
+    {% include amazon-link.html q="ラップ 30cm" %}
+  </div>
+  <div class="a-tool">
+    <div class="a-tool-head"><b>冷凍対応の保存容器</b><span class="a-pr">PR</span></div>
+    <p>ご飯やおかずの小分けに。電子レンジで温められるタイプが便利です。</p>
+    {% include amazon-link.html q="保存容器 冷凍 電子レンジ" %}
+  </div>
+</div>
+
+<h2>食材ごとの保存のコツ</h2>
+<p>冷凍全体のコツは「<a href="{{ '/storage/freezer-basics/' | relative_url }}">冷凍保存の基本</a>」にまとめています。</p>
+{% include related-storage.html %}
+
+<h2>ストックしておくと便利な常備食材</h2>
+<p>日持ちがして、手持ちの食材と組み合わせやすいものです。</p>
+<div class="a-tools">
+  <div class="a-tool">
+    <div class="a-tool-head"><b>パスタ（乾麺）</b><span class="a-pr">PR</span></div>
+    <p>余った野菜や肉と炒め合わせるだけで一品になります。</p>
+    {% include amazon-link.html q="パスタ 乾麺" %}
+  </div>
+  <div class="a-tool">
+    <div class="a-tool-head"><b>ツナ缶</b><span class="a-pr">PR</span></div>
+    <p>キャベツや玉ねぎなど、野菜だけのときのたんぱく源に。</p>
+    {% include amazon-link.html q="ツナ缶" %}
+  </div>
+  <div class="a-tool">
+    <div class="a-tool-head"><b>カットトマト缶</b><span class="a-pr">PR</span></div>
+    <p>煮込みやスープ、パスタのソースに。ひき肉とも相性がよい食材です。</p>
+    {% include amazon-link.html q="カットトマト缶" %}
+  </div>
+  <div class="a-tool">
+    <div class="a-tool-head"><b>顆粒だし</b><span class="a-pr">PR</span></div>
+    <p>残り野菜の汁物や煮物が、すぐに作れます。</p>
+    {% include amazon-link.html q="顆粒だし" %}
+  </div>
+</div>
+{% include amazon-note.html %}
+
+<div id="bot-box-wrap">
+{% include bot-box.html title="買い足した食材の「いつまでに使う」も、代わりに覚えておきます。" %}
+</div>
+
+<script>
+(function () {
+  // Botのボタンから #items=豚肉,キャベツ のように渡された食材名を表示する。
+  // 「#」以降はサーバーに送られない。表示は textContent のみで行い、HTMLとして解釈しない。
+  var m = location.hash.match(/^#items=(.*)$/);
+  if (!m) return;
+  var raw;
+  try { raw = decodeURIComponent(m[1]); } catch (e) { return; }
+  var names = raw.split(",").map(function (s) { return s.trim().slice(0, 30); }).filter(Boolean).slice(0, 8);
+  if (!names.length) return;
+  var bag = "https://www.amazon.co.jp/s?k=" + encodeURIComponent("冷凍用 保存袋 ジッパー") + "&tag={{ site.amazon_tag }}";
+  var wrap = "https://www.amazon.co.jp/s?k=" + encodeURIComponent("ラップ 30cm") + "&tag={{ site.amazon_tag }}";
+  var guides = [
+    { keys: ["ひき肉", "挽き肉", "挽肉", "ミンチ"], url: "{{ '/storage/ground-meat/' | relative_url }}", label: "ひき肉の冷凍保存", tool: "ラップ", toolUrl: wrap },
+    { keys: ["鶏むね", "鶏胸", "むね肉", "胸肉"], url: "{{ '/storage/chicken-breast/' | relative_url }}", label: "鶏むね肉の冷凍保存", tool: "冷凍用の保存袋", toolUrl: bag },
+    { keys: ["豚"], url: "{{ '/storage/pork/' | relative_url }}", label: "豚肉の冷凍保存", tool: "冷凍用の保存袋", toolUrl: bag },
+    { keys: ["キャベツ"], url: "{{ '/storage/cabbage/' | relative_url }}", label: "キャベツの冷凍保存", tool: "冷凍用の保存袋", toolUrl: bag },
+    { keys: ["ご飯", "ごはん", "白米", "お米"], url: "{{ '/storage/rice/' | relative_url }}", label: "ご飯の冷凍保存", tool: "ラップ", toolUrl: wrap }
+  ];
+  function link(href, text, sponsored) {
+    var a = document.createElement("a");
+    a.href = href;
+    a.textContent = text;
+    if (sponsored) { a.rel = "sponsored noopener"; a.target = "_blank"; }
+    return a;
+  }
+  var list = document.getElementById("bot-items-list");
+  names.forEach(function (name) {
+    var li = document.createElement("li");
+    var b = document.createElement("b");
+    b.textContent = name;
+    li.appendChild(b);
+    var g = null;
+    for (var i = 0; i < guides.length && !g; i++) {
+      for (var j = 0; j < guides[i].keys.length; j++) {
+        if (name.indexOf(guides[i].keys[j]) !== -1) { g = guides[i]; break; }
+      }
+    }
+    if (g) {
+      li.appendChild(document.createElement("br"));
+      li.appendChild(document.createTextNode("保存のコツ："));
+      li.appendChild(link(g.url, g.label, false));
+      li.appendChild(document.createTextNode("／使う道具："));
+      li.appendChild(link(g.toolUrl, g.tool, true));
+      var pr = document.createElement("span");
+      pr.className = "a-pr a-pr-inline";
+      pr.textContent = "PR";
+      li.appendChild(pr);
+    }
+    list.appendChild(li);
+  });
+  document.getElementById("bot-items").hidden = false;
+  // Botを使っている人向けなので、Botの紹介（下部の固定バーと紹介ボックス）は出さない。
+  // 固定バーはこのスクリプトより後ろにあるため、読み込み完了後に隠す。
+  document.addEventListener("DOMContentLoaded", function () {
+    var bar = document.querySelector(".a-bar");
+    if (bar) bar.style.display = "none";
+  });
+  var box = document.getElementById("bot-box-wrap");
+  if (box) box.style.display = "none";
+})();
+</script>
