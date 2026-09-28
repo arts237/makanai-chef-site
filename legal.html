@@ -1,0 +1,533 @@
+---
+layout: null
+title: "運営者情報・利用規約｜まかないシェフ"
+description: "まかないシェフ（Discord Bot）の特定商取引法に基づく表記・利用規約・プライバシーポリシー"
+permalink: /legal/
+---
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% seo %}
+<style>
+  :root {
+    --bg: #f3f6f1;
+    --surface: #ffffff;
+    --surface-alt: #eef3ec;
+    --ink: #1b241d;
+    --ink-soft: #47554a;
+    --ink-faint: #7c8a7e;
+    --rule: #d9e2d5;
+    --accent: #2f7a4f;
+    --accent-ink: #1f5636;
+    --accent-soft: #e2eee5;
+    --notice: #b23a28;
+    --notice-soft: #f8e8e3;
+    --notice-ink: #7c2718;
+    --shadow: 0 1px 2px rgba(27, 36, 29, 0.06), 0 8px 24px rgba(27, 36, 29, 0.05);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10150f;
+      --surface: #171e16;
+      --surface-alt: #1d251b;
+      --ink: #e9efe6;
+      --ink-soft: #b6c4b4;
+      --ink-faint: #7c8c7a;
+      --rule: #2a3527;
+      --accent: #63b586;
+      --accent-ink: #9cd6b6;
+      --accent-soft: #1c2c22;
+      --notice: #e28066;
+      --notice-soft: #2c1d18;
+      --notice-ink: #f0b3a1;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #10150f;
+    --surface: #171e16;
+    --surface-alt: #1d251b;
+    --ink: #e9efe6;
+    --ink-soft: #b6c4b4;
+    --ink-faint: #7c8c7a;
+    --rule: #2a3527;
+    --accent: #63b586;
+    --accent-ink: #9cd6b6;
+    --accent-soft: #1c2c22;
+    --notice: #e28066;
+    --notice-soft: #2c1d18;
+    --notice-ink: #f0b3a1;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink-soft);
+    font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    color: var(--ink);
+    text-wrap: balance;
+    font-weight: 600;
+  }
+
+  a { color: var(--accent-ink); }
+  a:focus-visible, button:focus-visible, .navlink:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ==== masthead ==== */
+  .masthead {
+    border-bottom: 1px solid var(--rule);
+    padding: 2.75rem 1.5rem 2.25rem;
+    text-align: center;
+  }
+  .masthead .mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Shippori Mincho", serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    color: var(--accent-ink);
+    margin-bottom: 1.1rem;
+    text-decoration: none;
+  }
+  .masthead .mark::before,
+  .masthead .mark::after {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+  .masthead h1 {
+    font-size: clamp(1.6rem, 4vw, 2.15rem);
+    margin: 0 0 0.6rem;
+  }
+  .masthead p {
+    margin: 0;
+    color: var(--ink-faint);
+    font-size: 0.92rem;
+  }
+
+  /* ==== layout ==== */
+  .layout {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 210px minmax(0, 1fr);
+    gap: 3rem;
+    padding: 2.5rem 1.5rem 5rem;
+    align-items: start;
+  }
+  @media (max-width: 760px) {
+    .layout { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem 1.25rem 4rem; }
+  }
+
+  nav.toc {
+    position: sticky;
+    top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  @media (max-width: 760px) {
+    nav.toc {
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 0.5rem;
+      box-shadow: var(--shadow);
+    }
+  }
+  nav.toc .navlabel {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  @media (max-width: 760px) { nav.toc .navlabel { display: none; } }
+  .navlink {
+    display: block;
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+  }
+  @media (max-width: 760px) {
+    .navlink { flex: 1 1 auto; text-align: center; border-left: none; border-bottom: 2px solid transparent; }
+  }
+  .navlink:hover { background: var(--surface-alt); }
+  .navlink.active {
+    color: var(--accent-ink);
+    background: var(--accent-soft);
+    border-left-color: var(--accent);
+    font-weight: 600;
+  }
+  @media (max-width: 760px) {
+    .navlink.active { border-left-color: transparent; border-bottom-color: var(--accent); }
+  }
+
+  main { min-width: 0; }
+
+  .doc {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: 2.25rem clamp(1.25rem, 4vw, 3rem);
+    margin-bottom: 2.25rem;
+    scroll-margin-top: 1.5rem;
+  }
+  .doc h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.35rem;
+  }
+  .doc .doc-sub {
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+    margin: 0 0 1.75rem;
+  }
+
+  /* key-value list for tokushoho */
+  dl.kv {
+    display: grid;
+    grid-template-columns: minmax(120px, 180px) 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  dl.kv > div {
+    display: contents;
+  }
+  dl.kv dt, dl.kv dd {
+    padding: 0.95rem 0;
+    border-bottom: 1px solid var(--rule);
+    margin: 0;
+  }
+  dl.kv dt {
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding-right: 1rem;
+  }
+  dl.kv dd { color: var(--ink-soft); }
+  @media (max-width: 560px) {
+    dl.kv { grid-template-columns: 1fr; }
+    dl.kv dt { border-bottom: none; padding-bottom: 0.25rem; }
+    dl.kv dd { padding-top: 0; }
+  }
+
+  /* articles for terms/privacy */
+  .article { margin: 0 0 1.6rem; }
+  .article:last-child { margin-bottom: 0; }
+  .article h3 {
+    font-size: 1.02rem;
+    margin: 0 0 0.55rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .article h3 .num {
+    font-variant-numeric: tabular-nums;
+    color: var(--accent-ink);
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+  }
+  .article ol, .article ul {
+    margin: 0.4rem 0 0;
+    padding-left: 1.35rem;
+  }
+  .article li { margin-bottom: 0.45rem; }
+  .article li:last-child { margin-bottom: 0; }
+  .article p { margin: 0.4rem 0 0; }
+
+  .callout {
+    background: var(--notice-soft);
+    border: 1px solid color-mix(in srgb, var(--notice) 35%, transparent);
+    border-radius: 10px;
+    padding: 0.95rem 1.1rem;
+    margin-top: 0.75rem;
+    font-size: 0.93rem;
+    color: var(--notice-ink);
+  }
+  .callout strong { color: var(--notice-ink); }
+
+  hr.sep {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 1.9rem 0;
+  }
+
+  .updated {
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    text-align: right;
+    margin-top: 1.75rem;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2.5rem 1.5rem 3.5rem;
+    color: var(--ink-faint);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--rule);
+  }
+  footer a { color: var(--ink-faint); text-decoration: underline; }
+</style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+</head>
+<body>
+
+<header class="masthead">
+  <a class="mark" href="{{ '/' | relative_url }}">まかないシェフ</a>
+  <h1>運営者情報・利用規約</h1>
+  <p>特定商取引法に基づく表記／利用規約／プライバシーポリシーをこのページにまとめています。</p>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="ページ内目次">
+    <span class="navlabel">Contents</span>
+    <a class="navlink" href="#tokushoho" data-target="tokushoho">特定商取引法に基づく表記</a>
+    <a class="navlink" href="#terms" data-target="terms">利用規約</a>
+    <a class="navlink" href="#privacy" data-target="privacy">プライバシーポリシー</a>
+  </nav>
+
+  <main>
+    <section class="doc" id="tokushoho">
+      <h2>特定商取引法に基づく表記</h2>
+      <p class="doc-sub">まかないシェフ プレミアムプラン</p>
+
+      <dl class="kv">
+        <div><dt>氏名（名称）・所在地・電話番号</dt><dd>ご請求をいただいた場合には、遅滞なく開示いたします。開示のご請求は下記メールアドレスまでご連絡ください。</dd></div>
+        <div><dt>運営統括責任者</dt><dd>ご請求をいただいた場合には、遅滞なく開示いたします。</dd></div>
+        <div><dt>メールアドレス</dt><dd>info@opera-ai.jp</dd></div>
+        <div><dt>お問い合わせ受付方法</dt><dd>Discordサーバー内でのお問い合わせ、または上記メールアドレスにて受け付けます。受付時間: 平日10:00〜18:00（土日祝を除く）。回答は受付から3営業日以内を目安にいたします。</dd></div>
+        <div><dt>販売価格</dt><dd>プレミアムプラン: 月額480円（税込）</dd></div>
+        <div><dt>販売価格以外に必要な料金</dt><dd>インターネット接続料金・通信料金はお客様のご負担となります（利用中の通信事業者の料金プランにより異なります）。</dd></div>
+        <div><dt>支払方法</dt><dd>クレジットカード決済（Stripe社の決済システムを利用。対応端末ではApple Pay / Google Payもご利用いただけます）</dd></div>
+        <div><dt>支払時期</dt><dd>お申込み（Discord上の<code>/upgrade</code>コマンドからの決済完了）と同時に決済されます。以降は毎月同日に自動更新・自動決済されます。</dd></div>
+        <div><dt>サービスの提供時期</dt><dd>決済完了後、即時にプレミアムプランの機能がご利用いただけます。</dd></div>
+        <div><dt>動作環境</dt><dd>Discordアカウント（無料）およびインターネット接続環境が必要です。Discordの利用にはDiscord社の利用規約への同意が別途必要です。</dd></div>
+        <div><dt>契約の解除・解約について</dt><dd>本サービスは形のない継続的なデジタルサービス（サブスクリプション）のため、性質上、返品はお受けできません。解約はいつでも、Discord上の<code>/manage</code>コマンドから表示されるStripeカスタマーポータルにて、お客様ご自身で行っていただけます。解約手続きが完了した時点で自動更新が停止し、既にお支払いいただいた当月分の利用料金の返金は行いません（日割り返金なし）。次回請求日以降の課金が停止します。</dd></div>
+        <div><dt>継続課金であることの明示</dt><dd>本プランは、解約手続きを行うまで毎月自動的に更新・課金される継続課金（サブスクリプション）契約です。次回更新日・解約方法は、Discordの<code>/manage</code>コマンドでいつでもご確認いただけます。</dd></div>
+        <div><dt>販売数量の制限等</dt><dd>特にありません。</dd></div>
+      </dl>
+
+      <p class="updated">最終更新: 2026年9月8日</p>
+    </section>
+
+    <section class="doc" id="terms">
+      <h2>利用規約</h2>
+      <p class="doc-sub">まかないシェフ（Discord Bot）</p>
+      <p>この利用規約（以下「本規約」）は、まかないシェフ（以下「本サービス」）の利用条件を定めるものです。本サービスをご利用になる方（以下「利用者」）は、本規約に同意したものとみなします。</p>
+      <hr class="sep">
+
+      <div class="article">
+        <h3><span class="num">第1条</span>本サービスの概要</h3>
+        <p>本サービスは、Discord上で動作するBotであり、利用者が入力した冷蔵庫の食材情報をもとにレシピを提案する機能、賞味期限の登録・リマインド機能、写真から食材や賞味期限を読み取る機能等を提供します。</p>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">第2条</span>利用資格</h3>
+        <ol>
+          <li>本サービスの利用には、Discordアカウントが必要です。Discordの利用規約・利用資格（年齢制限を含む）に従ってください。</li>
+          <li>未成年の方は、法定代理人（保護者等）の同意を得た上でご利用ください。</li>
+        </ol>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">第3条</span>プランと料金</h3>
+        <ol>
+          <li>本サービスには無料プランと、月額480円（税込）のプレミアムプランがあります。プレミアムプランの詳細は上記「特定商取引法に基づく表記」をご確認ください。</li>
+          <li>プレミアムプランの決済はStripe, Inc.（以下「Stripe」）の決済システムを通じて行われ、クレジットカード情報等の決済情報は運営者ではなくStripeが管理します。</li>
+          <li>プレミアムプランは、利用者が解約手続き（Discordの<code>/manage</code>コマンドから表示されるStripeカスタマーポータルで行う）を行うまで、毎月自動的に更新・課金されます。</li>
+          <li>解約後の返金は行いません（日割り返金なし）。解約手続き完了後、次回請求日以降の課金が停止します。</li>
+        </ol>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">第4条</span>禁止事項</h3>
+        <p>利用者は、本サービスの利用にあたり、以下の行為をしてはなりません。</p>
+        <ol>
+          <li>法令または公序良俗に違反する行為</li>
+          <li>本サービスのシステムに対する不正アクセス、過度な負荷をかける行為、リバースエンジニアリング等</li>
+          <li>他の利用者、運営者、第三者の権利（知的財産権、プライバシー等）を侵害する行為</li>
+          <li>決済を伴わずにプレミアムプラン相当の機能を利用しようとする行為（不正な手段によるアクセス制限の回避等）</li>
+          <li>本サービスを商業目的で無断転用・再配布する行為</li>
+          <li>その他、運営者が不適切と判断する行為</li>
+        </ol>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">第5条</span>免責事項・重要なご注意</h3>
+        <ol>
+          <li>
+            本サービスが提案するレシピ、写真から読み取る食材情報、賞味期限の概算日数は、AI（Claude API）による自動生成・自動推定、またはあらかじめ設定された目安日数に基づくものであり、その正確性・安全性を保証するものではありません。
+            <div class="callout"><strong>実際の食品の状態・消費期限・アレルギー等の安全性については、必ずご自身の目・鼻・判断で最終確認をお願いします。</strong> 提案されたレシピや賞味期限情報を利用したことによる食中毒その他の損害について、運営者は責任を負いません。</div>
+          </li>
+          <li>本サービスは、Discord、Anthropic（Claude API）、Stripe等の第三者サービスに依存しており、これらのサービスの障害・仕様変更・提供終了等により、本サービスの全部または一部が利用できなくなる場合があります。この場合の損害について、運営者は責任を負いません。</li>
+          <li>運営者は、本サービスの内容を予告なく変更・追加・停止・終了することがあります。</li>
+        </ol>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">第6条</span>知的財産権</h3>
+        <p>本サービスに関する著作権その他の知的財産権は、運営者または正当な権利を有する第三者に帰属します。利用者が入力した食材情報・登録したレシピ等については、本サービスの提供・改善のために利用させていただく場合があります。</p>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">第7条</span>利用制限・登録抹消</h3>
+        <p>運営者は、利用者が本規約に違反した場合、事前の通知なく、本サービスの全部または一部の利用を制限し、またはプレミアムプランの契約を解除することがあります。</p>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">第8条</span>本規約の変更</h3>
+        <p>運営者は、必要と判断した場合、利用者への事前の通知なく本規約を変更することがあります。変更後の規約は、本ページに掲載した時点から効力を生じるものとします。</p>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">第9条</span>準拠法・管轄裁判所</h3>
+        <p>本規約の解釈にあたっては日本法を準拠法とします。本サービスに関して紛争が生じた場合には、運営者の所在地を管轄する裁判所を第一審の専属的合意管轄裁判所とします。</p>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">第10条</span>お問い合わせ</h3>
+        <p>本規約に関するお問い合わせは、下記までご連絡ください。</p>
+        <p>メールアドレス: info@opera-ai.jp</p>
+      </div>
+
+      <p class="updated">最終更新: 2026年9月8日</p>
+    </section>
+
+    <section class="doc" id="privacy">
+      <h2>プライバシーポリシー</h2>
+      <p class="doc-sub">まかないシェフ（Discord Bot）</p>
+      <p>まかないシェフ（以下「本サービス」）の運営者（以下「運営者」）は、利用者の個人情報・利用データを以下の方針に基づき取り扱います。</p>
+      <hr class="sep">
+
+      <div class="article">
+        <h3><span class="num">1</span>取得する情報</h3>
+        <p>本サービスは、利用者が本サービスを利用する過程で、以下の情報を取得します。</p>
+        <ul>
+          <li>Discordのユーザーアカウント固有のID（DiscordユーザーID）</li>
+          <li>入力された食材名・レシピの検索条件</li>
+          <li>登録された賞味期限データ（食材名・購入日／期限日）</li>
+          <li>プレミアムプラン利用者が送信した冷蔵庫・食品棚の写真、レシートの写真（画像認識機能利用時のみ）</li>
+          <li>利用状況のログ（AI提案の利用回数、画像診断の利用回数等。プラン管理・不正利用防止のため）</li>
+          <li>Stripeでの決済に伴う顧客ID（クレジットカード番号等の決済情報そのものは運営者側では保持せず、Stripeが管理します）</li>
+        </ul>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">2</span>利用目的</h3>
+        <p>取得した情報は、以下の目的で利用します。</p>
+        <ol>
+          <li>レシピの提案、賞味期限リマインドの送信など、本サービスの機能提供</li>
+          <li>プレミアムプランの利用状況管理（利用回数の上限判定等）</li>
+          <li>不正利用の防止、システムの安定運用</li>
+          <li>サービスの改善・新機能の検討</li>
+          <li>利用者からのお問い合わせへの対応</li>
+        </ol>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">3</span>第三者への提供・業務委託</h3>
+        <p>本サービスは、以下の外部サービスを利用しており、必要な範囲で情報を送信します。</p>
+        <ul>
+          <li><strong>Anthropic（Claude API）</strong>: レシピの自動生成、写真からの食材・賞味期限読み取りのため、入力された食材情報や送信された画像を処理目的でAnthropic社のAPIに送信します</li>
+          <li><strong>Stripe, Inc.</strong>: プレミアムプランの決済処理のため、決済に必要な情報（Discordユーザー IDとの紐付け情報を含む）を送信します。クレジットカード情報等の機微な決済情報はStripeが管理し、運営者は保持しません</li>
+          <li><strong>Railway</strong>: 本サービスのサーバー・データベースのホスティングに利用しています</li>
+        </ul>
+        <p>上記以外の第三者に対して、法令に基づく場合等を除き、取得した情報を提供することはありません。</p>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">4</span>画像データの取り扱い</h3>
+        <p>写真から冷蔵庫の中身やレシートを読み取る機能（プレミアム限定）をご利用の場合、送信いただいた画像はAnthropic社のClaude Vision APIに処理目的で送信されます。画像は読み取り処理のためだけに利用し、運営者側で長期保存する目的では保持しません。</p>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">5</span>データの保存期間・削除</h3>
+        <p>登録された賞味期限データ・利用ログ等は、サービス提供に必要な期間保存します。データの削除をご希望の場合は、下記のお問い合わせ先までご連絡いただければ、確認の上対応いたします。</p>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">6</span>未成年の方の利用について</h3>
+        <p>本サービスはDiscordを通じて提供されるため、Discordの利用資格（年齢制限を含む）に従います。未成年の方がご利用になる場合は、保護者の同意のもとでご利用ください。</p>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">7</span>お問い合わせ窓口</h3>
+        <p>本ポリシーに関するお問い合わせ、保有する個人情報の開示・訂正・削除等のご請求は、下記までご連絡ください。</p>
+        <p>メールアドレス: info@opera-ai.jp</p>
+      </div>
+
+      <div class="article">
+        <h3><span class="num">8</span>本ポリシーの変更</h3>
+        <p>運営者は、必要に応じて本ポリシーの内容を変更することがあります。変更後のポリシーは、本ページに掲載した時点から効力を生じるものとします。</p>
+      </div>
+
+      <p class="updated">最終更新: 2026年9月8日</p>
+    </section>
+  </main>
+</div>
+
+<footer>
+  まかないシェフ — 冷蔵庫の余りもので、今日の一品を。<br>
+  <a href="{{ '/' | relative_url }}">トップページへ戻る</a>
+</footer>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll(".navlink"));
+    var sections = links.map(function (l) {
+      return document.getElementById(l.dataset.target);
+    });
+
+    function setActive(id) {
+      links.forEach(function (l) {
+        l.classList.toggle("active", l.dataset.target === id);
+      });
+    }
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) setActive(entry.target.id);
+          });
+        },
+        { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+      );
+      sections.forEach(function (s) { if (s) observer.observe(s); });
+    }
+
+    setActive("tokushoho");
+  })();
+</script>
+
+</body>
+</html>
