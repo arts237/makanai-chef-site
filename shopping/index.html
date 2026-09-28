@@ -18,7 +18,7 @@ noindex: true
   <p class="a-note" style="margin:10px 0 0">買ったら <code>/expiry add</code> で期限を登録しておくと、前日と当日の朝にDMでお知らせします。</p>
 </div>
 
-<p class="a-lead">まかないシェフの買い足し提案から来た方へ。買った食材を最後まで使い切るための、保存のコツと道具をまとめました。肉や野菜などの生鮮食材は、近所のお店で必要な分だけ買うのがいちばんです。</p>
+<p class="a-lead">まかないシェフの買い足し提案から来た方へ。買った食材を最後まで使い切るための、保存のコツと道具をまとめました。近くのお店で必要な分だけ買うのがいちばん無駄が出ませんが、日持ちする食材や保存グッズは通販も便利です。</p>
 
 <h2>鮮度を保ちやすくする保存グッズ</h2>
 <p>使い切れない分は、買ってきた日のうちに小分けして冷凍しておくと安心です。そのときに使う道具です。</p>
@@ -74,6 +74,7 @@ noindex: true
 {% include bot-box.html title="買い足した食材の「いつまでに使う」も、代わりに覚えておきます。" %}
 </div>
 
+<style>.a-item-buy{display:inline-block;margin:4px 0 2px;font-size:14px;font-weight:700;border:1.5px solid var(--accent);border-radius:999px;padding:4px 14px;text-decoration:none}#bot-items li{margin-bottom:12px}</style>
 <script>
 (function () {
   // Botのボタンから #items=豚肉,キャベツ のように渡された食材名を表示する。
@@ -112,9 +113,10 @@ noindex: true
         if (name.indexOf(guides[i].keys[j]) !== -1) { g = guides[i]; break; }
       }
     }
+    // 保存のコツを先に。食材別の記事が無い食材は「冷凍保存の基本」を案内する。
+    li.appendChild(document.createElement("br"));
+    li.appendChild(document.createTextNode("保存のコツ："));
     if (g) {
-      li.appendChild(document.createElement("br"));
-      li.appendChild(document.createTextNode("保存のコツ："));
       li.appendChild(link(g.url, g.label, false));
       li.appendChild(document.createTextNode("／使う道具："));
       li.appendChild(link(g.toolUrl, g.tool, true));
@@ -122,7 +124,18 @@ noindex: true
       pr.className = "a-pr a-pr-inline";
       pr.textContent = "PR";
       li.appendChild(pr);
+    } else {
+      li.appendChild(link("{{ '/storage/freezer-basics/' | relative_url }}", "冷凍保存の基本", false));
     }
+    // 食材そのものをAmazonで探すリンク（PR）は、保存のコツの後ろに置く。
+    li.appendChild(document.createElement("br"));
+    var buy = link("https://www.amazon.co.jp/s?k=" + encodeURIComponent(name) + "&tag={{ site.amazon_tag }}", "Amazonで「" + name + "」を探す", true);
+    buy.className = "a-item-buy";
+    li.appendChild(buy);
+    var pr0 = document.createElement("span");
+    pr0.className = "a-pr a-pr-inline";
+    pr0.textContent = "PR";
+    li.appendChild(pr0);
     list.appendChild(li);
   });
   document.getElementById("bot-items").hidden = false;
