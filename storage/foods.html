@@ -18,9 +18,13 @@ seo:
 
 {% assign articles = site.pages | where: "category_url", "/storage/" | sort: "order" %}
 <nav class="a-toc" aria-label="食材の目次">
-  <b>食材から探す</b><small class="a-chips-note">「→」の付いた食材は、詳しい記事に移動します。</small>
+  <b>食材から探す</b>
+  <p class="a-chips-label">詳しい記事がある食材（記事に移動します）</p>
   <p class="a-chips">
   {% for p in articles %}{% if p.food_keywords %}<a class="a-chip-page" href="{{ p.url | relative_url }}">{{ p.short_title | replace: "の冷凍保存", "" }} →</a>{% endif %}{% endfor %}
+  </p>
+  <p class="a-chips-label">このページで見る（下のカードに移動します）</p>
+  <p class="a-chips">
   {% for f in site.data.foods %}<a href="#{{ f.id }}">{{ f.name | escape }}</a>{% endfor %}
   </p>
 </nav>
