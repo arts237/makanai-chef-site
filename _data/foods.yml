@@ -1,0 +1,254 @@
+# 食材別 保存のコツ早見表（/storage/foods/）と買い足しガイドの候補欄で使うデータ。
+# 食材を増やすときは、この形式で1件追加する（出典を確認したものだけ）。
+# 専用の記事がある食材（豚肉など）は、記事の front matter の food_keywords が優先される。
+# exclude: この語を含む食材名には当てない（例: 小ねぎ に長ねぎのコツを出さない）。
+# tip に </script> などHTMLを入れないこと。
+- id: egg
+  name: 卵
+  keywords:
+  - 卵
+  - たまご
+  - 玉子
+  - タマゴ
+  tip: 卵は冷蔵庫で保存します。温度変化の少ない冷蔵庫の中で、とがったほうを下にして置くと割れにくくなります。
+  tool: null
+  tool_q: null
+  source_title: aff 2024年4月号「たまご」特集（農林水産省）
+  source_url: https://www.maff.go.jp/j/pr/aff/2404/pdf/aff2404-01.pdf
+- id: negi
+  name: 長ねぎ
+  keywords:
+  - 長ねぎ
+  - 長ネギ
+  - 長葱
+  - 白ねぎ
+  - 白ネギ
+  - ねぎ
+  - ネギ
+  - 葱
+  exclude:
+  - 小ねぎ
+  - 青ねぎ
+  - 万能ねぎ
+  - 小ネギ
+  - 青ネギ
+  - 万能ネギ
+  - わけぎ
+  - 玉ねぎ
+  - 玉ネギ
+  - 玉葱
+  tip: 水気を拭いて3等分し、それぞれラップで包んで冷凍用保存袋へ。冷凍で1か月程度が目安です。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: 【長ねぎの保存】冷蔵で3週間もつ! 野菜ソムリエのテクニック（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/5948/
+- id: onion
+  name: 玉ねぎ
+  keywords:
+  - 玉ねぎ
+  - 玉葱
+  - たまねぎ
+  - タマネギ
+  - 玉ネギ
+  - たまネギ
+  tip: 皮をむいてくし切り・みじん切り・薄切りなど使いやすく切り、冷凍用保存袋へ。1か月程度が目安です。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: 【玉ねぎの保存方法】冷凍が便利!調理がラクになる時短テク（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/11614/
+- id: carrot
+  name: にんじん
+  keywords:
+  - にんじん
+  - ニンジン
+  - 人参
+  tip: 皮をむいて薄いいちょう切りや細切りにし、冷凍用保存袋に薄く平らに入れて冷凍。1か月程度が目安です。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: 【にんじんの保存】正しい冷蔵・冷凍テクニックで1ヵ月鮮度キープ!（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/10912/
+- id: potato
+  name: じゃがいも
+  keywords:
+  - じゃがいも
+  - ジャガイモ
+  - じゃが芋
+  - 馬鈴薯
+  tip: 洗って水気を拭き、芽を取って1個ずつラップで包み保存袋へ。丸ごと冷凍で4か月程度が目安です。
+  tool: ラップ
+  tool_q: ラップ 30cm
+  source_title: 【じゃがいもの保存】切らずに丸ごと冷凍すれば約4ヵ月鮮度を保てる!（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/8912/
+- id: daikon
+  name: 大根
+  keywords:
+  - 大根
+  - だいこん
+  - ダイコン
+  tip: 皮をむいて用途に合わせて切り、水気を拭いて冷凍。2週間程度が目安（大根おろしは3週間程度）です。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: 大根は「冷凍保存」で、ムダなく大量消費が正解!（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/6577/
+- id: moyashi
+  name: もやし
+  keywords:
+  - もやし
+  - モヤシ
+  tip: 流水で洗って水気をしっかり切り、冷凍用保存袋に入れて冷凍。2週間程度が目安です。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: 【もやしの冷凍保存方法】凍ったまま作れるおかずレシピも!（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/3741/
+- id: spinach
+  name: ほうれん草
+  keywords:
+  - ほうれん草
+  - ほうれんそう
+  - ホウレンソウ
+  - 法蓮草
+  tip: 洗って水気を拭き3〜4cmに切り、生のまま冷凍用保存袋へ（かためにゆでても可）。1か月程度が目安です。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: 【ほうれん草の冷凍保存】1ヵ月もつ!鮮度・風味を保つテクニック（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/11466/
+- id: komatsuna
+  name: 小松菜
+  keywords:
+  - 小松菜
+  - こまつな
+  - コマツナ
+  tip: 根元を落として洗い、水気を拭いて3〜4cmに切り、生のまま冷凍用保存袋へ。2〜3週間が目安です。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: 【小松菜の冷凍保存】「生のまま」が正解！（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/10273/
+- id: broccoli
+  name: ブロッコリー
+  keywords:
+  - ブロッコリー
+  - ぶろっこりー
+  tip: 下ゆでせず小房に分けて洗い、水気を拭いて3〜4房ずつラップで包み、冷凍用保存袋へ。1か月程度が目安です。
+  tool: ラップ
+  tool_q: ラップ 30cm
+  source_title: 【ブロッコリーの冷凍保存方法】美味しさ1ヵ月長持ちのコツ!（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/10898/
+- id: tomato
+  name: トマト
+  keywords:
+  - トマト
+  - とまと
+  exclude:
+  - 缶
+  - ミニ
+  - ケチャップ
+  - ソース
+  tip: ヘタを取って丸ごと、または皮つきのままざく切りで冷凍用保存袋へ。2週間程度が目安で、加熱調理向きです。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: 【トマトの冷凍】生のまま保存OK!冷凍トマトの使い方&レシピ（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/3445/
+- id: shimeji
+  name: しめじ（きのこ）
+  keywords:
+  - しめじ
+  - シメジ
+  - きのこ
+  - キノコ
+  tip: 基本は洗わずに根元を切って小房に分け、冷凍用保存袋へ。冷凍で1か月程度が目安です。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: 【きのこの冷凍】種類別に解説。1ヵ月保存可能!（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/4796/
+- id: piman
+  name: ピーマン
+  keywords:
+  - ピーマン
+  - ぴーまん
+  tip: 使いやすく切ってラップで包むか、丸ごとそのまま冷凍用保存袋へ。空気を抜いて冷凍し、凍ったまま調理できます。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: ピーマン｜野菜保存のポイント（旭化成ホームプロダクツ）
+  source_url: https://www.asahi-kasei.co.jp/saran/preservation/vegetables/food26.html
+- id: eggplant
+  name: なす
+  keywords:
+  - なす
+  - ナス
+  - 茄子
+  tip: へたを切ってラップをかけ電子レンジで加熱し、1本ずつラップで包んで冷凍用保存袋へ。1か月程度が目安です。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: 【なすの冷凍】丸ごと冷凍して1ヵ月保存するテクニック（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/8899/
+- id: tofu
+  name: 豆腐
+  keywords:
+  - 豆腐
+  - とうふ
+  - トウフ
+  exclude:
+  - 高野
+  - 凍り豆腐
+  tip: 冷凍対応の保存容器に入れ、豆腐がかぶる程度の水を加えて冷凍。3週間程度が目安で、凍り豆腐のような食感に変わります。
+  tool: 冷凍対応の保存容器
+  tool_q: 保存容器 冷凍 電子レンジ
+  source_title: 【納豆・油揚げ・豆腐・味噌】冷凍保存方法を解説!（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/5427/
+- id: natto
+  name: 納豆
+  keywords:
+  - 納豆
+  - なっとう
+  - ナットウ
+  tip: パックのまま冷凍用保存袋に入れて冷凍でき、3週間程度が目安です（味付け後は2週間程度）。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: 【納豆・油揚げ・豆腐・味噌】冷凍保存方法を解説!（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/5427/
+- id: milk
+  name: 牛乳
+  keywords:
+  - 牛乳
+  - ぎゅうにゅう
+  tip: 加熱して使うなら製氷皿で凍らせてから保存袋へ移して冷凍。1〜2か月程度が目安ですが、風味や舌触りは落ちます。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: 牛乳って冷凍できる!?【生クリーム・ヨーグルト・チーズ・バター】乳製品の冷凍テク（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/4998/
+- id: salmon
+  name: 鮭（切り身）
+  keywords:
+  - 鮭
+  - しゃけ
+  - シャケ
+  - サーモン
+  exclude:
+  - フレーク
+  - スモーク
+  tip: 少量の酒と塩をふって10分程度置き、出た水分を拭いてラップで包み保存袋へ。2〜3週間が目安です。
+  tool: ラップ
+  tool_q: ラップ 30cm
+  source_title: 【鮭の冷凍】生鮭・塩鮭、焼き鮭も!解凍のコツや下味冷凍レシピを徹底解説（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/16906/
+- id: bacon
+  name: ベーコン
+  keywords:
+  - ベーコン
+  - べーこん
+  tip: 1枚ずつ間隔をあけて並べるか、使いやすく切って小分けにして冷凍。1か月程度が目安です。
+  tool: 冷凍用の保存袋
+  tool_q: 冷凍用 保存袋 ジッパー
+  source_title: ベーコンはまとめ買いして冷凍が便利!パラパラ保存のコツや解凍テクも（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/16246/
+- id: bread
+  name: 食パン
+  keywords:
+  - 食パン
+  - 食ぱん
+  - しょくぱん
+  tip: 1〜2枚ずつラップで包み、冷凍用保存袋に空気を抜いて入れて冷凍。2週間以内が目安です。
+  tool: ラップ
+  tool_q: ラップ 30cm
+  source_title: 【プロが解説】パンの冷凍・解凍のテクニック。美味しさキープでふわっと焼ける（ニチレイフーズ ほほえみごはん）
+  source_url: https://www.nichireifoods.co.jp/media/4632/

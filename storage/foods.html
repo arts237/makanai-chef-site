@@ -1,0 +1,51 @@
+---
+layout: article
+title: "食材別 保存のコツ早見表｜卵・玉ねぎ・豆腐など20食材"
+short_title: "食材別 保存のコツ早見表"
+description: "卵・長ねぎ・玉ねぎ・にんじん・もやし・豆腐など、よく使う食材の保存のコツと冷凍保存の目安を一覧にしました。食材ごとの詳しい記事へのリンクもあります。"
+permalink: /storage/foods/
+category_name: "保存方法"
+category_url: /storage/
+order: 0.5
+image: /assets/images/lp/hero-pc.png
+date: 2026-09-29
+has_pr: true
+seo:
+  type: Article
+---
+
+<p class="a-lead">よく使う食材の保存のコツを、1食材ひとことずつまとめました。気になる食材から見てください。冷凍のやり方そのものは「<a href="{{ '/storage/freezer-basics/' | relative_url }}">冷凍保存の基本</a>」にまとめています。</p>
+
+{% assign articles = site.pages | where: "category_url", "/storage/" | sort: "order" %}
+<nav class="a-toc" aria-label="食材の目次">
+  <b>食材から探す</b><small class="a-chips-note">「→」の付いた食材は、詳しい記事に移動します。</small>
+  <p class="a-chips">
+  {% for p in articles %}{% if p.food_keywords %}<a class="a-chip-page" href="{{ p.url | relative_url }}">{{ p.short_title | replace: "の冷凍保存", "" }} →</a>{% endif %}{% endfor %}
+  {% for f in site.data.foods %}<a href="#{{ f.id }}">{{ f.name | escape }}</a>{% endfor %}
+  </p>
+</nav>
+
+<h2>詳しい記事がある食材</h2>
+<ul class="a-list">
+{% for p in articles %}{% if p.food_keywords %}
+  <li><a href="{{ p.url | relative_url }}">{{ p.title }}<small>{{ p.description }}</small></a></li>
+{% endif %}{% endfor %}
+</ul>
+
+<h2>よく使う食材の保存のコツ</h2>
+<div class="a-foods">
+{% for f in site.data.foods %}
+  <section class="a-food" id="{{ f.id }}">
+    <h3>{{ f.name | escape }}</h3>
+    <p>{{ f.tip | escape }}</p>
+    {% if f.tool %}<p class="a-food-tool">使う道具：<a href="https://www.amazon.co.jp/s?k={{ f.tool_q | url_encode }}&amp;tag={{ site.amazon_tag }}" rel="sponsored noopener" target="_blank">{{ f.tool | escape }}</a><span class="a-pr a-pr-inline">PR</span></p>{% endif %}
+    <p class="a-food-src">出典：<a href="{{ f.source_url }}" rel="noopener" target="_blank">{{ f.source_title | escape }}</a></p>
+  </section>
+{% endfor %}
+</div>
+<p class="a-note">どれも目安です。期間内でも、においや色がおかしいものは食べないでください。</p>
+{% include amazon-note.html %}
+
+{% include bot-box.html title="冷凍した食材の「いつまでに使う」を、代わりに覚えておきます。" %}
+
+{% include related-storage.html %}

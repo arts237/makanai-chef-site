@@ -14,14 +14,14 @@ date: 2026-09-29
 
 <h2>まずはここから</h2>
 <ul class="a-list">
-{% for p in all %}{% if p.order == 0 %}
+{% for p in all %}{% if p.order < 1 %}
   <li><a href="{{ p.url | relative_url }}">{{ p.title }}<small>{{ p.description }}</small></a></li>
 {% endif %}{% endfor %}
 </ul>
 
 <h2>食材別の冷凍保存</h2>
 <ul class="a-list">
-{% for p in all %}{% if p.order > 0 %}
+{% for p in all %}{% if p.order >= 1 %}
   <li><a href="{{ p.url | relative_url }}">{{ p.title }}<small>{{ p.description }}</small></a></li>
 {% endif %}{% endfor %}
 </ul>

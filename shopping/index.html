@@ -41,7 +41,7 @@ noindex: true
 </div>
 
 <h2>食材ごとの保存のコツ</h2>
-<p>冷凍全体のコツは「<a href="{{ '/storage/freezer-basics/' | relative_url }}">冷凍保存の基本</a>」にまとめています。</p>
+<p>冷凍全体のコツは「<a href="{{ '/storage/freezer-basics/' | relative_url }}">冷凍保存の基本</a>」に、卵・ねぎ・玉ねぎなどよく使う食材のコツは「<a href="{{ '/storage/foods/' | relative_url }}">食材別 保存のコツ早見表</a>」にまとめています。</p>
 {% include related-storage.html %}
 
 <h2>ストックしておくと便利な常備食材</h2>
@@ -85,14 +85,11 @@ noindex: true
   try { raw = decodeURIComponent(m[1]); } catch (e) { return; }
   var names = raw.split(",").map(function (s) { return s.trim().slice(0, 30); }).filter(Boolean).slice(0, 8);
   if (!names.length) return;
-  var bag = "https://www.amazon.co.jp/s?k=" + encodeURIComponent("冷凍用 保存袋 ジッパー") + "&tag={{ site.amazon_tag }}";
-  var wrap = "https://www.amazon.co.jp/s?k=" + encodeURIComponent("ラップ 30cm") + "&tag={{ site.amazon_tag }}";
-  var guides = [
-    { keys: ["ひき肉", "挽き肉", "挽肉", "ミンチ"], url: "{{ '/storage/ground-meat/' | relative_url }}", label: "ひき肉の冷凍保存", tool: "ラップ", toolUrl: wrap },
-    { keys: ["鶏むね", "鶏胸", "むね肉", "胸肉"], url: "{{ '/storage/chicken-breast/' | relative_url }}", label: "鶏むね肉の冷凍保存", tool: "冷凍用の保存袋", toolUrl: bag },
-    { keys: ["豚"], url: "{{ '/storage/pork/' | relative_url }}", label: "豚肉の冷凍保存", tool: "冷凍用の保存袋", toolUrl: bag },
-    { keys: ["キャベツ"], url: "{{ '/storage/cabbage/' | relative_url }}", label: "キャベツの冷凍保存", tool: "冷凍用の保存袋", toolUrl: bag },
-    { keys: ["ご飯", "ごはん", "白米", "お米"], url: "{{ '/storage/rice/' | relative_url }}", label: "ご飯の冷凍保存", tool: "ラップ", toolUrl: wrap }
+  // 食材と保存記事の対応表は、各保存記事の front matter（food_keywords / food_tool / food_tool_q）から
+  // Jekyllが自動で作る。記事を追加すると、ここ（＝Botの買い足しリンクの行き先）にも自動で反映される。
+  var guides = [{% for p in site.pages %}{% if p.food_keywords %}
+    { keys: {{ p.food_keywords | jsonify }}, url: {{ p.url | relative_url | jsonify }}, label: {{ p.short_title | default: p.title | jsonify }}, tool: {{ p.food_tool | jsonify }}, toolUrl: "https://www.amazon.co.jp/s?k=" + encodeURIComponent({{ p.food_tool_q | jsonify }}) + "&tag={{ site.amazon_tag }}" },{% endif %}{% endfor %}{% for f in site.data.foods %}
+    { keys: {{ f.keywords | jsonify }}, exclude: {% if f.exclude %}{{ f.exclude | jsonify }}{% else %}[]{% endif %}, url: "{{ '/storage/foods/' | relative_url }}#{{ f.id }}", label: {{ f.name | append: "のコツを早見表で見る" | jsonify }}, tip: {{ f.tip | jsonify }} },{% endfor %}
   ];
   function link(href, text, sponsored) {
     var a = document.createElement("a");
@@ -107,23 +104,33 @@ noindex: true
     var b = document.createElement("b");
     b.textContent = name;
     li.appendChild(b);
-    var g = null;
-    for (var i = 0; i < guides.length && !g; i++) {
+    // いちばん長く一致したキーワードの記事を選ぶ（例:「豚ひき肉」は「豚」より「ひき肉」を優先）。
+    var g = null, best = 0;
+    for (var i = 0; i < guides.length; i++) {
       for (var j = 0; j < guides[i].keys.length; j++) {
-        if (name.indexOf(guides[i].keys[j]) !== -1) { g = guides[i]; break; }
+        var k = guides[i].keys[j];
+        var ex = guides[i].exclude || [];
+        var excluded = ex.some(function (x) { return name.indexOf(x) !== -1; });
+        if (k && !excluded && k.length > best && name.indexOf(k) !== -1) { g = guides[i]; best = k.length; }
       }
     }
     // 保存のコツを先に。食材別の記事が無い食材は「冷凍保存の基本」を案内する。
     li.appendChild(document.createElement("br"));
     li.appendChild(document.createTextNode("保存のコツ："));
     if (g) {
+      if (g.tip) {
+        // 記事が無い食材は、早見表のひとことを表示して早見表へリンクする。
+        li.appendChild(document.createTextNode(g.tip + " "));
+      }
       li.appendChild(link(g.url, g.label, false));
-      li.appendChild(document.createTextNode("／使う道具："));
-      li.appendChild(link(g.toolUrl, g.tool, true));
-      var pr = document.createElement("span");
-      pr.className = "a-pr a-pr-inline";
-      pr.textContent = "PR";
-      li.appendChild(pr);
+      if (g.tool && g.toolUrl) {
+        li.appendChild(document.createTextNode("／使う道具："));
+        li.appendChild(link(g.toolUrl, g.tool, true));
+        var pr = document.createElement("span");
+        pr.className = "a-pr a-pr-inline";
+        pr.textContent = "PR";
+        li.appendChild(pr);
+      }
     } else {
       li.appendChild(link("{{ '/storage/freezer-basics/' | relative_url }}", "冷凍保存の基本", false));
     }
