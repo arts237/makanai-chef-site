@@ -1,0 +1,18 @@
+{%- comment -%}
+Googleアナリティクス（GA4）。サイトのプライバシーポリシー3章と対応。
+- 買い足しガイド（/shopping/）など、URLの # 以降に食材名が入るページは front matter に analytics: false を書いて読み込まない
+- Googleシグナル・広告のパーソナライズはオフ（ポリシーの「広告に使わない」に対応）
+{%- endcomment -%}
+{%- if site.ga_id and page.analytics != false -%}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga_id }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ site.ga_id }}', {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script>
+{%- endif -%}

@@ -9,4 +9,6 @@ plugins:
 markdown: kramdown
 permalink: /:title/
 # Amazonアソシエイトのトラッキングタグ（例: xxxxx-22）。記事内のAmazonリンクに自動で付与される
+# Googleアナリティクス（GA4）の測定ID。_includes/analytics.html で使う
+ga_id: "G-9M6RQ0PQZ6"
 amazon_tag: "makanai01-22"
