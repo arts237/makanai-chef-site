@@ -1,0 +1,4 @@
+{%- comment -%} ヘッダーのナビ（全レイアウト共通）。include.cls にレイアウトごとのクラスを渡す {%- endcomment -%}
+<a class="{{ include.cls }}" href="{{ '/storage/' | relative_url }}">保存方法</a>
+<a class="{{ include.cls }} nav-opt" href="{{ '/storage/foods/' | relative_url }}">早見表</a>
+<a class="{{ include.cls }}" href="{{ '/start/' | relative_url }}">始め方</a>

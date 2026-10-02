@@ -71,3 +71,13 @@ main a{ color:var(--brand); }
   .hero-oval{ width:300px; height:300px; }
   .hero-phone-img{ width:230px; }
 }
+
+/* 2026-10-02 内部リンク改善: 共通ナビ。スマホではロゴの下にナビを1行で並べ、早見表は隠す */
+.nav a{white-space:nowrap;}
+@media (max-width:640px){
+  .nav{flex-wrap:wrap;row-gap:8px;padding:12px 16px;}
+  .nav nav{width:100%;display:flex;align-items:center;}
+  .nav nav a{margin-left:0;margin-right:14px;font-size:13px;}
+  .nav .nav-opt{display:none;}
+  .nav-cta{margin-left:auto !important;margin-right:0 !important;padding:6px 14px;}
+}

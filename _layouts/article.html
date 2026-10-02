@@ -30,8 +30,7 @@
     <div class="a-wrap a-header-row">
       <a class="a-logo" href="{{ '/' | relative_url }}">まかないシェフ</a>
       <nav class="a-header-nav" aria-label="サイト内">
-        <a class="a-header-link" href="{{ '/storage/' | relative_url }}">保存方法</a>
-        <a class="a-header-link" href="{{ '/storage/foods/' | relative_url }}">食材早見表</a>
+        {% include site-nav-links.html cls="a-header-link" %}
       </nav>
     </div>
   </header>
@@ -71,14 +70,7 @@
     <div class="a-wrap">
       <p class="a-disc">賞味期限・保存期間は目安です。食べられるかどうかは、商品の表示と食材の状態でご判断ください。</p>
       <nav class="a-foot-links" aria-label="フッター">
-        <a href="{{ '/' | relative_url }}">まかないシェフとは</a>
-        <a href="{{ '/storage/' | relative_url }}">保存方法ガイド</a>
-        <a href="{{ '/storage/foods/' | relative_url }}">食材別 保存のコツ早見表</a>
-        <a href="{{ '/about/' | relative_url }}">このサイトについて</a>
-        <a href="{{ '/legal/' | relative_url }}#terms">利用規約</a>
-        <a href="{{ '/privacy-policy/' | relative_url }}">プライバシーポリシー</a>
-        <a href="{{ '/ad-disclosure/' | relative_url }}">広告表記</a>
-        <a href="{{ '/contact/' | relative_url }}">お問い合わせ</a>
+        {% include site-footer-links.html %}
       </nav>
       <p class="a-copy">Discordは Discord Inc. の商標です。© まかないシェフ</p>
     </div>
