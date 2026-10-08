@@ -1,0 +1,105 @@
+---
+layout: article
+title: "買い置きと保存グッズの選び方｜保存容器・調理器具・冷凍食品・飲料"
+description: "生鮮は必要な分だけ、日持ちするものはまとめて。保存容器・調理器具を選ぶときの目安と、冷凍食品・飲料を無駄なく買い置くコツをまとめました。"
+short_title: "買い置きと保存グッズの選び方"
+permalink: /stock/
+category_name: "買い置きと道具"
+category_url: /stock/
+date: 2026-10-08
+has_pr: true
+image: /assets/images/lp/hero-pc.png
+seo:
+  type: Article
+---
+{%- comment -%}
+  2026-10-08 新設。Bot（まかないシェフ）の買い足し提案にある「SALE中の買い置き・保存グッズを見る（PR）」のリンク先。
+  - ページ自体は通年のガイド。セールの案内枠（#sale-notice）は、期間中だけ表示する
+  - 【終了後の削除】Amazonアソシエイトの規約（期間限定プロモーションは終了したら直ちに削除）のため、
+    2026-10-20 の朝に #sale-notice の aside と script をこのファイルから削除してコミットする（担当: AIが差分を用意、プロダクト責任者がpush）
+  - トラッキングIDは他のページと同じ site.amazon_tag（プロダクト責任者の判断）
+  - Amazonへのリンクはこのページ（登録サイト）にだけ置く。Botからは直接リンクしない
+  - 価格・割引率・「お得」は書かない。生鮮のまとめ買いは勧めない
+  - 日程は About Amazon Japan の公式発表で確認（2026-10-08）
+{%- endcomment -%}
+{%- assign tag = site.amazon_tag -%}
+
+<p>近くのお店で必要な分だけ買うのが、いちばん無駄が出ません。そのうえで、保存容器・調理器具や、日持ちする冷凍食品・飲料は、通販でまとめてそろえると楽になります。</p>
+
+<p><a href="#containers">保存容器</a> ｜ <a href="#tools">調理器具</a> ｜ <a href="#frozen">冷凍食品</a> ｜ <a href="#drinks">飲料</a></p>
+
+<!-- セールの案内枠: 初期状態は非表示。スクリプトが期間内と判定できたときだけ表示する（JSが動かなければ出ない）。検索結果の抜粋にも使わせない -->
+<aside id="sale-notice" class="a-answer" hidden data-nosnippet
+  data-start="2026-10-13T00:00:00+09:00" data-end="2026-10-20T00:00:00+09:00">
+  <span class="a-answer-label">SALE中</span>
+  <p><strong>Amazonのプライム会員向けセール「プライム感謝祭」が開催されます｜先行セール 10/13〜15・本セール 10/16〜19</strong></p>
+  <p>セールで整えるなら、まず保存グッズから。生ものは必要な分だけがおすすめです。本セールはプライム会員限定です。対象商品・価格・条件は、Amazonの告知と各商品ページでご確認ください。</p>
+</aside>
+<script>
+(function () {
+  var el = document.getElementById("sale-notice");
+  if (!el) return;
+  var start = Date.parse(el.getAttribute("data-start"));
+  var end = Date.parse(el.getAttribute("data-end"));
+  var now = Date.now();
+  if (isFinite(start) && isFinite(end) && now >= start && now < end) {
+    el.hidden = false;
+    // 終了時刻を過ぎたら、開いたままのページでも隠す
+    setTimeout(function () { el.hidden = true; }, Math.min(end - now, 2147483647));
+  }
+})();
+</script>
+
+<h2 id="containers">保存容器・保存袋</h2>
+<ul>
+  <li><strong>冷凍に使えるか</strong>を最初に見る。耐冷温度が書かれているものを選ぶ</li>
+  <li>一人分なら<strong>小さめを数個</strong>。大きい容器1つより、使い切る単位で分けやすい</li>
+  <li>肉や下ごしらえした野菜は、<strong>平らにして冷凍できる保存袋</strong>が便利（場所を取らない）</li>
+  <li>くり返し使うなら、においや色が移りにくい素材かを確認する</li>
+</ul>
+<p>保存の手順は<a href="{{ '/storage/freezer-basics/' | relative_url }}">冷凍保存の基本</a>にまとめています。</p>
+<p>
+  <a href="https://www.amazon.co.jp/s?k={{ '保存袋 冷凍 ジッパー' | url_encode }}&amp;tag={{ tag }}" rel="sponsored noopener" target="_blank">Amazonで冷凍用の保存袋を探す（PR）</a><br>
+  <a href="https://www.amazon.co.jp/s?k={{ '保存容器 冷凍 小分け' | url_encode }}&amp;tag={{ tag }}" rel="sponsored noopener" target="_blank">Amazonで小分けの保存容器を探す（PR）</a>
+</p>
+
+<h2 id="tools">調理器具</h2>
+<ul>
+  <li>最初にそろえるなら、<strong>フライパン（20〜26cm）と小鍋</strong>。一人分の料理はほとんどこの2つで作れる</li>
+  <li>コンロがIHなら、<strong>IH対応</strong>の表示があるかを確認する</li>
+  <li>洗い物を減らしたいなら、<strong>電子レンジで使える耐熱容器</strong>。ゆでる・蒸す・温め直しに使える</li>
+  <li>キッチンが狭いなら、重ねて片づけられるものを選ぶ</li>
+</ul>
+<p>
+  <a href="https://www.amazon.co.jp/s?k={{ 'フライパン 一人暮らし' | url_encode }}&amp;tag={{ tag }}" rel="sponsored noopener" target="_blank">Amazonでフライパンを探す（PR）</a><br>
+  <a href="https://www.amazon.co.jp/s?k={{ '耐熱容器 電子レンジ 調理' | url_encode }}&amp;tag={{ tag }}" rel="sponsored noopener" target="_blank">Amazonで電子レンジ用の耐熱容器を探す（PR）</a>
+</p>
+
+<h2 id="frozen">冷凍食品</h2>
+<ul>
+  <li><strong>使う分だけ取り出せる</strong>もの（バラ凍結の野菜、小分けのご飯・麺）は、使い切りやすく無駄が出にくい</li>
+  <li>一人暮らしの冷凍室は小さめ。<strong>まずは1〜2袋から</strong>。入りきらない量は買わない</li>
+  <li>賞味期限は、未開封で表示どおりに保存した場合の目安です。開けたら口をしっかり閉じ、一度溶けたものは早めに使い切る</li>
+</ul>
+<p>買ったら、Discordで <code>/expiry add</code> に期限を登録しておくと、期限が近づいたときにお知らせが届きます。</p>
+<p>
+  <a href="https://www.amazon.co.jp/s?k={{ '冷凍野菜 カット' | url_encode }}&amp;tag={{ tag }}" rel="sponsored noopener" target="_blank">Amazonで冷凍野菜を探す（PR）</a>
+</p>
+
+<h2 id="drinks">飲料</h2>
+<ul>
+  <li>水やお茶など<strong>重い飲料は、通販でまとめて</strong>買うと持ち帰る手間がない</li>
+  <li>置き場所に収まる量にする。箱で買うなら、<strong>賞味期限が近いものから先に</strong>飲めるよう、新しく買った分を奥に置く（先入れ先出し）</li>
+  <li>開けたら早めに飲み切る</li>
+</ul>
+<p>買ったら、Discordで <code>/expiry add</code> に期限を登録しておくと、期限が近づいたときにお知らせが届きます。</p>
+<p>
+  <a href="https://www.amazon.co.jp/s?k={{ 'ミネラルウォーター ケース' | url_encode }}&amp;tag={{ tag }}" rel="sponsored noopener" target="_blank">Amazonで水（ケース）を探す（PR）</a><br>
+  <a href="https://www.amazon.co.jp/s?k={{ 'お茶 ペットボトル ケース' | url_encode }}&amp;tag={{ tag }}" rel="sponsored noopener" target="_blank">Amazonでお茶（ケース）を探す（PR）</a>
+</p>
+
+<h2 id="stock-tip">買い置きを無駄にしないために</h2>
+<p>買い置きが増えるほど、期限を覚えておくのは大変になります。まかないシェフを使っている方は、買った物を <code>/expiry add</code> で登録しておきましょう。期限の前日と当日の朝にお知らせし、使い切るレシピを提案します。</p>
+<p>まだ使っていない方は → <a href="{{ '/start/' | relative_url }}?from=stock">まかないシェフの始め方を見る</a></p>
+
+<p><small>このページには広告（PR）を含みます。Amazonのアソシエイトとして、まかないシェフは適格販売により収入を得ています。詳しくは<a href="{{ '/ad-disclosure/' | relative_url }}">広告表記</a>をご覧ください。Amazon、Amazon.co.jpおよびそれらのロゴはAmazon.com, Inc.またはその関連会社の商標です。</small></p>
