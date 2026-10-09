@@ -22,8 +22,32 @@ jobs:
         run: |
           printf 'url: "https://arts237.github.io"\nbaseurl: "/makanai-chef-site"\n' > _old.yml
           bundle exec jekyll build -d out/old --config _config.yml,_old.yml
-      - uses: actions/upload-artifact@v4
-        with:
-          name: site-builds
-          path: out/
-          retention-days: 3
+      - name: Old URLs that remain in the new build
+        run: |
+          if grep -rn "arts237.github.io\|makanai-chef-site" out/new; then echo "::warning::新ビルドに旧URLが残っています"; else echo "旧URLの残りなし"; fi
+      - name: Compare (URLの違いだけを正規化して比較)
+        run: |
+          norm() { # $1=dir
+            find "$1" -type f \( -name '*.html' -o -name '*.xml' -o -name '*.txt' -o -name '*.json' -o -name '*.css' -o -name '*.js' \) -print0 | while IFS= read -r -d '' f; do
+              sed -i -E \
+                -e 's#https://arts237\.github\.io/makanai-chef-site#https://makanai-chef.com#g' \
+                -e 's#https://arts237\.github\.io#https://makanai-chef.com#g' \
+                -e 's#/makanai-chef-site/#/#g' \
+                -e 's#"/makanai-chef-site"#""#g' \
+                -e 's#\?v=[0-9]+#?v=X#g' \
+                -e 's#"(dateModified|datePublished)":"[^"]*"#"\1":"X"#g' \
+                -e 's#<lastmod>[^<]*</lastmod>#<lastmod>X</lastmod>#g' "$f"
+            done
+          }
+          norm out/old; norm out/new
+          echo "## 比較結果" >> "$GITHUB_STEP_SUMMARY"
+          echo "旧（github.io）$(find out/old -type f | wc -l)ファイル / 新（独自ドメイン）$(find out/new -type f | wc -l)ファイル" >> "$GITHUB_STEP_SUMMARY"
+          if diff -r out/old out/new > diff.txt; then
+            echo "差分なし（URL以外は完全に一致）" >> "$GITHUB_STEP_SUMMARY"
+            echo "RESULT: IDENTICAL"
+          else
+            echo '```' >> "$GITHUB_STEP_SUMMARY"; head -c 60000 diff.txt >> "$GITHUB_STEP_SUMMARY"; echo '```' >> "$GITHUB_STEP_SUMMARY"
+            head -c 20000 diff.txt
+            echo "::error title=差分あり::旧と新の出力に、URL以外の差分があります"
+            exit 1
+          fi
