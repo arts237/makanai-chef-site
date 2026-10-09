@@ -1,0 +1,12 @@
+// Cloudflare Workers（静的配信）の設定。Jekyllが作った _site をそのまま配信する。
+// Workerのスクリプトは使わない（静的ファイルだけ。無料枠のスクリプト実行回数を消費しない）。
+{
+  "name": "makanai-chef-site",
+  "compatibility_date": "2026-10-09",
+  "assets": {
+    "directory": "./_site"
+  },
+  // プレビュー用の *.workers.dev を公開しない（検索に重複して載らないように）
+  "workers_dev": false,
+  "preview_urls": false
+}
