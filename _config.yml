@@ -12,3 +12,13 @@ permalink: /:title/
 # Googleアナリティクス（GA4）の測定ID。_includes/analytics.html で使う
 ga_id: "G-9M6RQ0PQZ6"
 amazon_tag: "makanai01-22"
+# ビルドに含めないファイル（Jekyllの既定の除外に、Cloudflareの設定ファイルを足したもの）
+exclude:
+  - wrangler.jsonc
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
