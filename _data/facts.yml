@@ -1,0 +1,72 @@
+# 記事に出す「数値＋単位」の正本（数値はデータから、文章はAIから）。
+# 新しい型の記事（ai_assisted: true）は、日数・温度・時間などを本文に直接書かず、
+#   {% include fact.html id="..." %}      … 値を1つ出す
+#   {% include storage-table.html food="..." %} … kind: period の行を表にする
+# で出す。値を足すときは必ず出典（sources.yml のキー）を付け、出典の表現どおりに書く。
+# quote: 出典の原文の該当部分（照合用。ページには出さない）。
+
+# --- 食パン ---
+- id: bread.freeze.period
+  food: bread
+  kind: period
+  label: 冷凍（1〜2枚ずつラップ＋冷凍用保存袋）
+  value: 2週間以内
+  source: nichirei-bread
+  quote: "2週間以内を目安に食べきる"
+- id: bread.toast.preheat
+  food: bread
+  value: 200℃で3分程度
+  source: nichirei-bread
+  quote: "200℃で3分程度を目安にトースターを予熱する。"
+- id: bread.toast.time
+  food: bread
+  value: 200℃で4〜4分半
+  source: nichirei-bread
+  quote: "200℃で4~4分半焼く(6枚切りの目安)。"
+- id: bread.toast.watt
+  food: bread
+  value: 1000W
+  source: nichirei-bread
+  quote: "焼き時間と温度は1000Wのトースターで焼くときの目安です。"
+
+# --- きのこ ---
+- id: mushroom.freeze.period
+  food: mushroom
+  kind: period
+  label: 冷凍（しめじ・えのき・しいたけ・エリンギ・株なめこ）
+  value: 1か月程度
+  source: nichirei-mushroom
+  quote: "冷凍庫で1ヵ月程度保存可能。"
+- id: mushroom.freeze.period.nameko
+  food: mushroom
+  kind: period
+  label: 冷凍（パック入りのなめこ）
+  value: 2〜3週間程度
+  source: nichirei-mushroom
+  quote: "2〜3週間程度"
+
+# --- 玉ねぎ ---
+- id: onion.freeze.period
+  food: onion
+  kind: period
+  label: 冷凍（切って／丸ごと）
+  value: 約1か月
+  source: nichirei-onion
+  quote: "約1ヵ月保存可能"
+- id: onion.whole.cut
+  food: onion
+  value: 1cm弱
+  source: nichirei-onion
+  quote: "1cm弱の十字の切り込み"
+- id: onion.whole.thaw
+  food: onion
+  value: 冷蔵庫で3時間
+  source: nichirei-onion
+  quote: "冷蔵庫で3時間置いておけば包丁が入るようになる"
+- id: onion.freeze.period.maff
+  food: onion
+  kind: period
+  label: 冷凍（家庭で生のまま冷凍した野菜の目安）
+  value: 3週間
+  source: maff-veg-freeze
+  quote: "野菜の冷凍保存期間は3週間が目安です。"

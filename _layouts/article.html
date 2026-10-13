@@ -49,6 +49,7 @@
         {% if page.last_modified_at %}／更新日 <time datetime="{{ page.last_modified_at | date: '%Y-%m-%d' }}">{{ page.last_modified_at | date: '%Y年%-m月%-d日' }}</time>{% endif %}
         {% if page.has_pr %}<span class="a-pr-note">この記事にはPR（広告）を含みます</span>{% endif %}
       </p>
+      {% if page.ai_assisted %}{% include ai-note.html %}{% endif %}
       {{ content }}
     </article>
 

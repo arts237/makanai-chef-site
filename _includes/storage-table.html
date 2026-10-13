@@ -1,0 +1,14 @@
+{%- assign _rows = site.data.facts | where: "food", include.food | where: "kind", "period" -%}
+{%- unless include.no_heading %}<h2>保存期間の目安</h2>{% endunless %}
+<div class="a-table-wrap">
+<table>
+  <thead><tr><th>保存のしかた</th><th>目安（出典）</th></tr></thead>
+  <tbody>
+  {%- for r in _rows %}
+    {%- assign _s = site.data.sources[r.source] %}
+    <tr><td>{{ r.label | escape }}</td><td><b>{{ r.value | escape }}</b><br><small>（<a href="{{ _s.url }}" rel="noopener" target="_blank">{{ _s.short | escape }}</a>）</small></td></tr>
+  {%- endfor %}
+  </tbody>
+</table>
+</div>
+<p class="a-note">冷凍するのは、表示の期限内で傷んでいないものにします。この期間は冷凍してからの目安で、商品に表示された賞味期限・消費期限とは別のものです。目安であり、安全を保証するものではありません。期間内でも、においや色、見た目がおかしいものは食べないでください。</p>

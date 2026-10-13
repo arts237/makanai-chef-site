@@ -1,0 +1,12 @@
+{%- comment -%}出典の一覧。food の facts が参照する出典＋ extra（カンマ区切りのキー）を、重複なしで出す。{%- endcomment -%}
+{%- assign _keys = "" | split: "" -%}
+{%- assign _rows = site.data.facts | where: "food", include.food -%}
+{%- for r in _rows -%}{%- unless _keys contains r.source -%}{%- assign _keys = _keys | push: r.source -%}{%- endunless -%}{%- endfor -%}
+{%- if include.extra -%}{%- assign _ex = include.extra | split: "," -%}{%- for k in _ex -%}{%- assign _k = k | strip -%}{%- unless _keys contains _k -%}{%- assign _keys = _keys | push: _k -%}{%- endunless -%}{%- endfor -%}{%- endif -%}
+<h2>参考にした情報</h2>
+<ul class="a-sources">
+{%- for k in _keys %}
+  {%- assign _s = site.data.sources[k] %}
+  <li><a href="{{ _s.url }}" rel="noopener" target="_blank">{{ _s.title | escape }}</a>（{{ _s.checked | date: '%Y年%-m月%-d日' }}確認）</li>
+{%- endfor %}
+</ul>

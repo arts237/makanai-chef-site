@@ -15,6 +15,7 @@ amazon_tag: "makanai01-22"
 # ビルドに含めないファイル（Jekyllの既定の除外に、Cloudflareの設定ファイルを足したもの）
 exclude:
   - wrangler.jsonc
+  - scripts/
   - README.md
   - Gemfile
   - Gemfile.lock
