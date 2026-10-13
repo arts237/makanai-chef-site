@@ -1,0 +1,24 @@
+# 記事の出典の一覧（新しい型の記事＝ai_assisted: true の記事で使う）。
+# キーを facts.yml の source と、記事の sources.html の extra から参照する。
+# short: 表の「出典」欄に出す短い名前。
+# checked: 出典の内容を最後に確認した日。内容を見直したら更新する。
+nichirei-bread:
+  short: ニチレイフーズ
+  title: "【プロが解説】パンの冷凍・解凍のテクニック。美味しさキープでふわっと焼ける（ニチレイフーズ ほほえみごはん）"
+  url: https://www.nichireifoods.co.jp/media/4632/
+  checked: 2026-10-14
+nichirei-mushroom:
+  short: ニチレイフーズ
+  title: "【きのこの冷凍】種類別に解説。1ヵ月保存可能!（ニチレイフーズ ほほえみごはん）"
+  url: https://www.nichireifoods.co.jp/media/4796/
+  checked: 2026-10-14
+nichirei-onion:
+  short: ニチレイフーズ
+  title: "【玉ねぎの保存方法】冷凍が便利!調理がラクになる時短テク（ニチレイフーズ ほほえみごはん）"
+  url: https://www.nichireifoods.co.jp/media/11614/
+  checked: 2026-10-14
+maff-veg-freeze:
+  short: 農林水産省
+  title: "簡単な「冷凍ワザ」で、野菜を新鮮に！おいしく！（農林水産省）"
+  url: https://www.maff.go.jp/j/keikaku/syokubunka/culture/wagohan/articles/2203/spe7_03.html
+  checked: 2026-10-14

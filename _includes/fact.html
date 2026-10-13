@@ -1,0 +1,1 @@
+{%- assign _f = site.data.facts | where: "id", include.id | first -%}{%- if _f -%}{{ _f.value | escape }}{%- else -%}【データなし: {{ include.id }}】{%- endif -%}
