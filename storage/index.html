@@ -1,27 +1,14 @@
----
-layout: article
-title: "保存方法ガイド"
-description: "食材を無駄にしないための冷凍保存の方法をまとめています。冷凍の基本から、豚肉・鶏むね肉・ひき肉・キャベツ・ご飯など食材ごとのコツまで。"
-permalink: /storage/
-category_name: "保存方法"
-category_url: /storage/
-date: 2026-09-29
----
-
-<p class="a-lead">買った食材を使い切れずに捨ててしまう前に。まずは冷凍の基本を押さえて、よく使う食材は食材ごとのコツを見てみてください。どの記事も、冒頭の「結論」だけで答えが分かるようにしています。</p>
-
-{% assign all = site.pages | where: "category_url", "/storage/" | where_exp: "p", "p.url != '/storage/'" | sort: "order" %}
-
-<h2>まずはここから</h2>
-<ul class="a-list">
-{% for p in all %}{% if p.order < 1 %}
-  <li><a href="{{ p.url | relative_url }}">{{ p.title }}<small>{{ p.description }}</small></a></li>
-{% endif %}{% endfor %}
-</ul>
-
-<h2>食材別の冷凍保存</h2>
-<ul class="a-list">
-{% for p in all %}{% if p.order >= 1 %}
-  <li><a href="{{ p.url | relative_url }}">{{ p.title }}<small>{{ p.description }}</small></a></li>
-{% endif %}{% endfor %}
-</ul>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>まかないシェフは makanai-chef.com に移転しました</title>
+<link rel="canonical" href="https://makanai-chef.com/storage/">
+<script>(function(){var p=location.pathname.replace(/^\/makanai-chef-site/,'')||'/';location.replace('https://makanai-chef.com'+p+location.search+location.hash);})();</script>
+<meta http-equiv="refresh" content="0; url=https://makanai-chef.com/storage/">
+</head>
+<body>
+<p>まかないシェフのサイトは <a href="https://makanai-chef.com/storage/">https://makanai-chef.com/storage/</a> に移転しました。自動で移動しない場合はリンクを押してください。</p>
+</body>
+</html>
