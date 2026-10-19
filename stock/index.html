@@ -14,9 +14,8 @@ seo:
 ---
 {%- comment -%}
   2026-10-08 新設。Bot（まかないシェフ）の買い足し提案にある「SALE中の買い置き・保存グッズを見る（PR）」のリンク先。
-  - ページ自体は通年のガイド。セールの案内枠（#sale-notice）は、期間中だけ表示する
-  - 【終了後の削除】Amazonアソシエイトの規約（期間限定プロモーションは終了したら直ちに削除）のため、
-    2026-10-20 の朝に #sale-notice の aside と script をこのファイルから削除してコミットする（担当: AIが差分を用意、プロダクト責任者がpush）
+  - ページ自体は通年のガイド。2026-10-13〜19 のセール案内枠（#sale-notice）は、Amazonアソシエイトの規約
+    （期間限定プロモーションは終了したら直ちに削除）に沿って 2026-10-20 に削除した。次にセール枠を置くときも、終了翌朝に削除する
   - トラッキングIDは他のページと同じ site.amazon_tag（プロダクト責任者の判断）
   - Amazonへのリンクはこのページ（登録サイト）にだけ置く。Botからは直接リンクしない
   - 価格・割引率・「お得」は書かない。生鮮のまとめ買いは勧めない
@@ -27,28 +26,6 @@ seo:
 <p>近くのお店で必要な分だけ買うのが、いちばん無駄が出ません。そのうえで、保存容器・調理器具や、日持ちする冷凍食品・飲料は、通販でまとめてそろえると楽になります。</p>
 
 <p><a href="#containers">保存容器</a> ｜ <a href="#tools">調理器具</a> ｜ <a href="#frozen">冷凍食品</a> ｜ <a href="#drinks">飲料</a></p>
-
-<!-- セールの案内枠: 初期状態は非表示。スクリプトが期間内と判定できたときだけ表示する（JSが動かなければ出ない）。検索結果の抜粋にも使わせない -->
-<aside id="sale-notice" class="a-answer" hidden data-nosnippet
-  data-start="2026-10-13T00:00:00+09:00" data-end="2026-10-20T00:00:00+09:00">
-  <span class="a-answer-label">SALE中</span>
-  <p><strong>Amazonのプライム会員向けセール「プライム感謝祭」が開催されます｜先行セール 10/13〜15・本セール 10/16〜19</strong></p>
-  <p>セールで整えるなら、まず保存グッズから。生ものは必要な分だけがおすすめです。本セールはプライム会員限定です。対象商品・価格・条件は、Amazonの告知と各商品ページでご確認ください。</p>
-</aside>
-<script>
-(function () {
-  var el = document.getElementById("sale-notice");
-  if (!el) return;
-  var start = Date.parse(el.getAttribute("data-start"));
-  var end = Date.parse(el.getAttribute("data-end"));
-  var now = Date.now();
-  if (isFinite(start) && isFinite(end) && now >= start && now < end) {
-    el.hidden = false;
-    // 終了時刻を過ぎたら、開いたままのページでも隠す
-    setTimeout(function () { el.hidden = true; }, Math.min(end - now, 2147483647));
-  }
-})();
-</script>
 
 <h2 id="containers">保存容器・保存袋</h2>
 <ul>
