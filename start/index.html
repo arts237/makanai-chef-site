@@ -1,110 +1,153 @@
 ---
 layout: default
-title: まかないシェフの始め方
-description: 自分用のDiscordサーバーを作って、まかないシェフを入れるまでの手順。食材を登録すると、期限の前日と当日の朝にDMが届く。
+title: まかないシェフの始め方｜Discordで賞味期限をDMでお知らせ（無料・サーバー不要）
+description: Discord Bot「まかないシェフ」を自分のアカウントに追加して、食材を1つ登録するまでの手順。期限の前日と当日の朝8時にDMでお知らせが届き、そこから使い切りレシピへ。登録とお知らせは無料、サーバーは不要。
 permalink: /start/
 image: /assets/images/lp/shot-notice.png
 ---
+<!--
+  2026-10-18 改訂案（T-025のボタン・DMの文章の操作に対応／User Installを主導線に）。独立レビュー済み（UX・ブランド・法務QA）。
+  公開の条件（すべて揃ってから差し替える）:
+  1. プライバシーポリシー改訂（歓迎DMの通知の受け取り〔サーバー追加を含む〕・DMの文章の扱い）を先に公開
+  2. Railway の DISCORD_PUBLIC_KEY、Developer Portal の Webhooks（Application Authorized）を設定し、歓迎DMの拡張をデプロイ
+  3. サーバー0のアカウントで実機確認（追加→歓迎DM→ボタン/文章で登録→次の朝8時のお知らせ→使い切った。プロフィールから「メッセージを送る」が開くか）
+  4. サイト上部ナビ・トップの「追加」ボタンを同じ日にユーザー追加（integration_type=1）へ揃える
+  5. スクリーンショットのコメント2か所を、画像を入れるか削除する
+-->
 <style>
 .st{max-width:720px;margin:0 auto;padding:24px 16px 64px;line-height:1.8;color:#1d1d1f}
 .st h1{font-size:28px;font-weight:900;margin:0 0 8px}
 .st .lead{color:#555;margin:0 0 12px}
 .st .btn{display:inline-block;background:#111;color:#fff;text-decoration:none;font-weight:700;border-radius:999px;padding:12px 22px;margin:6px 0 4px}
+.st .btn.sec{background:#fff;color:#111;border:2px solid #111}
 .st .sub{font-size:13px;color:#666;margin:0 0 28px}
 .st .shot{display:block;height:auto;margin:12px 0 16px;border-radius:16px;max-width:100%;box-shadow:0 8px 24px rgba(0,0,0,.08)}
 .st ol.steps{list-style:none;padding:0;margin:0;display:grid;gap:20px;counter-reset:s}
 .st ol.steps>li{min-width:0;counter-increment:s;background:#fff;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,.08);padding:20px 22px}
 .st ol.steps>li h2{font-size:19px;margin:0 0 8px;display:flex;gap:10px;align-items:baseline}
 .st ol.steps>li h2::before{content:counter(s);display:inline-grid;place-items:center;min-width:28px;height:28px;border-radius:50%;background:#6A3BDB;color:#fff;font-size:15px}
-.st .skip{font-size:13px;color:#6A3BDB;font-weight:700;margin:0}
 .st .how{margin:8px 0 0;padding-left:1.2em}
 .st .how li{margin:2px 0}
 .st code{background:#F5F6F8;border-radius:6px;padding:1px 6px;font-size:.92em;word-break:break-all}
-.st .cmd{display:block;background:#F5F6F8;border-radius:10px;padding:10px 12px;margin:8px 0;overflow-x:auto;white-space:nowrap}
+.st .say{display:block;background:#F5F6F8;border-radius:10px;padding:10px 12px;margin:8px 0;overflow-x:auto;white-space:nowrap}
+.st .chip{display:inline-block;background:#EEE8FB;color:#4b2aa6;border-radius:999px;padding:0 10px;font-weight:700;font-size:.92em;white-space:nowrap}
 .st .note{font-size:13px;color:#666}
 .st .extra{border-top:1px dashed #ddd;margin-top:14px;padding-top:12px}
 .st .extra h3{font-size:15px;margin:0 0 4px}
 .st .box{background:#F5F6F8;border-radius:20px;padding:18px 20px;margin-top:24px}
 .st .box h2{font-size:17px;margin:0 0 6px}
 .st .box ul,.st .box ol{margin:0;padding-left:1.2em}
+.st table.ops{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.st table.ops th,.st table.ops td{text-align:left;vertical-align:top;padding:6px 8px;border-top:1px solid #e3e3e8}
+.st table.ops th{font-weight:700;white-space:nowrap}
 </style>
 
 <div class="st">
   <h1>まかないシェフの始め方</h1>
-  <p class="lead">食材と期限を登録しておくと、期限の前日と当日の朝8時にDiscordのDMでお知らせが届くBot。DMのボタンから、期限が近い食材を使うレシピも出せる。自分用のサーバーを作れば、一人でも使える。</p>
+  <p class="lead">期限を覚えておくのは、シェフの仕事。食材と期限を登録しておくと、期限の前日と当日の朝8時（日本時間）に、まかないシェフがDiscordのDMでお知らせする賞味期限リマインダー。そのボタンから、冷蔵庫にあるものを使い切るレシピまでたどり着ける。自分のDiscordアカウントに追加するだけで、サーバーは要らない。</p>
   <img class="shot" src="{{ '/assets/images/lp/shot-notice.png' | relative_url }}" alt="まかないシェフから届いた賞味期限のお知らせDMと「使い切るレシピを提案してもらう」ボタン" width="600" height="197">
-  <a class="btn" href="https://discord.com/oauth2/authorize?client_id=1546140293248716831&amp;permissions=19456&amp;scope=bot+applications.commands" target="_blank" rel="noopener">まかないシェフを追加する</a>
-  <p class="sub">自分のサーバーがある人は、このボタンからすぐ追加できる。ない人は下の1から。</p>
+  <a class="btn" href="https://discord.com/oauth2/authorize?client_id=1546140293248716831&amp;integration_type=1&amp;scope=applications.commands" target="_blank" rel="noopener">無料で自分のDiscordに追加する</a>
+  <p class="sub">サーバーの管理権限は不要。追加するとDMで使い方が届く。サーバーのみんなで使いたい人は<a href="#server">サーバーに追加する方法</a>へ。もうサーバーで使っている人は、入れ直さなくてOK（登録もそのまま）。</p>
 
   <ol class="steps">
     <li>
-      <h2>自分用のサーバーを作る</h2>
-      <p class="skip">自分が管理しているサーバーがあれば、ここは飛ばしてOK</p>
-      <ul class="how">
-        <li>Discordの左にあるサーバー一覧の「＋」（サーバーを追加）を押す</li>
-        <li>「オリジナルの作成」→「自分と友達のため」を選ぶ</li>
-        <li>名前を入れて「新規作成」（名前はなんでもいい。例: 冷蔵庫）</li>
-      </ul>
-    </li>
-    <li>
       <h2>まかないシェフを追加する</h2>
-      <a class="btn" href="https://discord.com/oauth2/authorize?client_id=1546140293248716831&amp;permissions=19456&amp;scope=bot+applications.commands" target="_blank" rel="noopener">まかないシェフを追加する</a>
+      <a class="btn" href="https://discord.com/oauth2/authorize?client_id=1546140293248716831&amp;integration_type=1&amp;scope=applications.commands" target="_blank" rel="noopener">無料で自分のDiscordに追加する</a>
       <ul class="how">
-        <li>開いた画面の案内どおりに、さっき作ったサーバーを選んで「認証」を押す</li>
+        <li>開いた画面の案内どおりに「認証」を押す</li>
         <li>スマホだとブラウザで開くので、Discordへのログインや「ロボットではありません」の確認が出ることがある</li>
-        <li>Botを追加できるのは、そのサーバーの管理権限がある人だけ（自分で作ったサーバーなら自分）</li>
       </ul>
-      <p class="note">Botに渡す権限は「チャンネルを見る・メッセージを送る・埋め込みリンク」の3つだけ。</p>
-      <!-- スクリーンショット2: 認証画面 -->
+      <p class="note">Discordには、Botをサーバーではなく「自分」に入れる方法がある。入れると、まかないシェフとのDMで、自分だけのリストとして使える。サーバーを作る必要はない。</p>
+      <!-- スクリーンショット: ユーザーとして追加する認証画面 -->
     </li>
     <li>
-      <h2>DMが届く設定か確認する</h2>
+      <h2>届いたDMを開く</h2>
+      <p>追加したらDiscordアプリに戻って、DM一覧を開く。まかないシェフから<strong>お礼と使い方のDM</strong>が届いている（少し時間がかかることがある）。期限のお知らせも、このDMに届く。</p>
       <ul class="how">
-        <li>PCはサーバーのアイコンを右クリック、スマホはサーバー名をタップして「プライバシー設定」を開く</li>
-        <li>「サーバーにいるメンバーからのダイレクトメッセージを許可する」がオンになっているか見る</li>
+        <li>見当たらないときは、「メッセージリクエスト」も見てね</li>
+        <li>それでもなければ、下のボタンでまかないシェフのプロフィールを開いて「メッセージを送る」を押し、<code>使い方</code> と送る。操作のボタンが出る</li>
+        <li>プロフィールが開けないときは、Discordのどこかのチャンネルや友だちとのDMで <code>/expiry add</code> と入力しても登録できる（返事は自分にだけ見える）</li>
       </ul>
-      <p class="note">オフだとお知らせが届かないので、念のため確認してね。Discordの画面の表記は、アップデートで変わることがある。</p>
-      <!-- スクリーンショット3: プライバシー設定 -->
+      <a class="btn sec" href="https://discord.com/users/1546140293248716831" target="_blank" rel="noopener">まかないシェフのプロフィールを開く</a>
     </li>
     <li>
-      <h2>食材を登録する</h2>
-      <p>サーバーのチャンネルで <code>/expiry</code> と打つと候補が出るので <code>add</code> を選ぶ。<code>item</code> に食材名、<code>date</code> に日付を<strong>半角で</strong>入れる。</p>
-      <code class="cmd">/expiry add item:牛乳 date:2026-10-15</code>
-      <p class="note">日付を明日にすると、翌朝DMが届いて試せる。</p>
+      <h2>食材を1つ登録する</h2>
+      <p>DMの下にある <span class="chip">➕ 食材を追加</span> を押して食材名を入れ、期限をボタンで選ぶ。登録すると、お知らせが届く日が表示される。</p>
+      <ul class="how">
+        <li>期限のボタンは「明日」「3日後」「1週間後」「2週間後」「パッケージの日付を入力」。まかないシェフが日数を知っている食材なら「目安」（だいたいの日数）も出る</li>
+        <li>表示の期限がわかるものは、その日付を入れてね</li>
+      </ul>
+      <p class="note">試すなら期限を「明日」に。次の朝8時に、このDMへお知らせが届く。試しに登録した食材は、お知らせの「使い切った」で外せる。</p>
+      <!-- スクリーンショット: 食材名の入力と期限ボタン -->
+      <div class="extra">
+        <h3>DMに文章で送っても登録できる</h3>
+        <code class="say">牛乳 明日</code>
+        <code class="say">卵 10/25、豆腐 3日後</code>
+        <p class="note">「、」で区切ると、まとめて登録できる。期限を書かなかった食材は、ボタンで聞かれる。</p>
+      </div>
       <div class="extra">
         <h3>レシートの写真でまとめて登録</h3>
-        <p><code>/scan receipt</code> の photo 欄にレシートの写真を付けると、購入日から期限をざっくり出して、まとめて登録する（無料は月5回）。</p>
-        <p class="note">表示の期限とはズレるので、肉・魚は袋の表示も見てね。店名や名前が写っている部分は隠してOK。</p>
+        <p><span class="chip">🧾 レシートで追加</span> を押してレシートの写真を付けると、品目を読み取って、購入日からだいたいの期限を付けて出す。登録するものを選んで登録する（無料は月5回）。</p>
+        <p class="note">写真はAI（外部のサービス）で読み取る。扱いは<a href="{{ '/legal/' | relative_url }}#privacy">プライバシーポリシー</a>のとおり。店名や名前が写っている部分は隠してOK。表示の期限とはズレるので、肉・魚は袋の表示も見てね。</p>
       </div>
-      <div class="extra">
-        <h3>おまけ: すぐ試す</h3>
-        <p>DMを待たずに試すなら、<code>/recipe</code> と打って <code>ingredients</code>（食材）の欄は空のまま送信。登録した食材のうち期限が近いものを使うレシピをAIが出す（自分にだけ見える）。</p>
-        <p class="note">AIのレシピ・買い足しの提案は、<code>/recipe</code> のAI・DMのボタン・<code>/shopping</code> を合わせて無料で1日2回まで。1日2回を超えると案内だけが出て、日付が変わる（日本時間）とまた使える。</p>
-      </div>
+    </li>
+    <li>
+      <h2>お知らせが届いたら</h2>
+      <ul class="how">
+        <li>期限の前日と当日の朝8時に、DMでお知らせが届く</li>
+        <li>「使い切るレシピを提案してもらう」を押すと、期限が近い食材を使うレシピをAIが出す</li>
+        <li>使い切ったら「○○ 使い切った」を押すと、確認のあとリストから外れる。次に買うとよさそうな食材も出て、そのままボタンで登録できる</li>
+        <li>期限を過ぎた食材は、翌日にお知らせして、その次の日に自動で外れる。お知らせの「今すぐリストから外す」で先に外してもいい</li>
+      </ul>
+      <p class="note">AIを使う提案（お知らせのボタンからのレシピ、<code>/recipe</code> のAI、<code>/shopping</code>）は、合わせて無料で1日2回まで。超えると案内だけが出て、日付が変わる（日本時間）とまた使える。</p>
     </li>
   </ol>
 
   <div class="box">
-    <h2>このあと届くもの</h2>
-    <p>期限の前日と当日の朝8時にDMが届く。DMのボタンを押すとレシピが出て、使い切ったらボタンで登録から外せる。期限を過ぎた食材は、翌日にお知らせして、その次の日に自動で外れる（DMを受け取れない設定でも外れる）。DMは登録した本人にだけ届く。</p>
+    <h2>よく使う操作</h2>
+    <p class="note">ボタンでも、まかないシェフとのDMに文章で送っても、同じことができる。</p>
+    <table class="ops">
+      <tr><th>登録したものを見る</th><td><span class="chip">📋 リスト</span> を押す／<code>リスト</code> と送る</td></tr>
+      <tr><th>使い切った</th><td>お知らせのボタン／<span class="chip">📋 リスト</span> から選んで外す／<code>牛乳 使い切った</code> と送る（確認あり）</td></tr>
+      <tr><th>レシピを見たい</th><td>お知らせのボタン／<code>レシピ</code> と送るとボタンが出る</td></tr>
+      <tr><th>次に買うもの</th><td><code>買い足し</code> と送る（AIなし・回数に数えない）</td></tr>
+      <tr><th>ボタンが見当たらない</th><td><code>使い方</code> と送る</td></tr>
+    </table>
+    <p class="note">文章は決まった言い方だけを読み取る（AIは使わない）。送った文章そのものは保存もログ記録もしない。保存するのは、登録した食材名と期限だけ。写真は文章とは別で、AIで読み取る。</p>
   </div>
 
   <div class="box">
     <h2>DMが来ないとき</h2>
     <ol>
-      <li><code>/expiry list</code> で登録できているか見る</li>
-      <li>期限の日付が今日か明日か（DMは朝8時に届く）</li>
-      <li>手順3の設定がオンになっているか</li>
-      <li>Botをブロックしていないか、メッセージリクエストに入っていないか</li>
+      <li><span class="chip">📋 リスト</span> で登録できているか見る</li>
+      <li>お知らせは毎朝8時（日本時間）に、期限が今日か明日の食材について届く。8時を過ぎてから登録した場合は次の朝に届く（期限を今日にした食材は、次の朝が「期限切れ」のお知らせになる）</li>
+      <li>まかないシェフをブロックしていないか、メッセージリクエストに入っていないか</li>
+      <li>サーバーに追加して使っている人は、下の「サーバーに追加する方法」の手順2の設定がオンか</li>
     </ol>
+    <p class="note">それでも届かないときは、サポートサーバーで教えてね。</p>
+  </div>
+
+  <div class="box" id="server">
+    <h2>サーバーに追加する方法（サーバーのみんなで使いたい人向け）</h2>
+    <p>自分が管理しているサーバーに入れると、そのサーバーのメンバーも使える。登録とお知らせは一人ずつ別々。もうサーバーに入れて使っている人は、そのままでOK（登録もそのまま）。</p>
+    <a class="btn sec" href="https://discord.com/oauth2/authorize?client_id=1546140293248716831&amp;permissions=19456&amp;scope=bot+applications.commands" target="_blank" rel="noopener">サーバーに追加する</a>
+    <ol>
+      <li>開いた画面で、入れたいサーバーを選んで「認証」を押す（Botを追加できるのは、そのサーバーの管理権限がある人だけ）。Botに渡す権限は「チャンネルを見る・メッセージを送る・埋め込みリンク」の3つだけ。追加した人には、使い方のDMが1通届く</li>
+      <li>DMが届く設定か確認する: PCはサーバーのアイコンを右クリック、スマホはサーバー名をタップして「プライバシー設定」を開き、「サーバーにいるメンバーからのダイレクトメッセージを許可する」がオンか見る（表記はアップデートで変わることがある）</li>
+      <li>登録は、まかないシェフとのDM（上の手順2〜3と同じ）か、サーバーのチャンネルで <code>/expiry add</code> から。<code>/expiry</code> の返事は本人にだけ見える。<code>/recipe</code> に食材を入れて検索した結果は、チャンネルのほかの人にも見える</li>
+    </ol>
+    <p class="note">サーバーのチャンネルでは、まかないシェフは文章を読まない。文章での操作は、まかないシェフとのDMだけ。メンバーには使い方のDMは届かないので、このページを共有すると案内しやすい。</p>
   </div>
 
   <div class="box">
     <h2>知っておいてほしいこと</h2>
     <ul>
       <li>表示は日本語だけ</li>
-      <li>期限の登録・お知らせ・内蔵レシピ検索は無料。AIのレシピ・買い足しの提案は合わせて1日2回、写真の読み取りは月5回まで無料。月額480円（税込）のプレミアムプランは、この回数が増える（上限あり）</li>
-      <li>レシピや期限の目安は参考情報。食べられるかどうかは、商品の表示と食材の状態を見て判断してね</li>
+      <li>期限の登録・お知らせ・内蔵レシピ検索は無料。AIを使う提案は合わせて1日2回、写真の読み取りは月5回まで無料。月額480円（税込）のプレミアムプランは、この回数が増える（上限あり）</li>
+      <li>コマンド（<code>/expiry</code> <code>/recipe</code> <code>/scan</code> <code>/shopping</code>）でも、同じことができる</li>
+      <li>自分のアカウントに追加すると、ほかのサーバーやDMでもコマンドを打てる。ただし <code>/recipe</code> に食材を入れて検索した結果は、その場所のほかの人にも見えることがある。登録や一覧は、まかないシェフとのDMで使ってね</li>
+      <li>期限の目安やレシートからの推定は、未開封・適切な保存を前提にした参考値。AIのレシピは誤りを含むことがあるので、アレルギーや加熱の具合は自分で確かめてね。食べられるかどうかは、商品の表示と食材の状態を見て判断してね。お知らせは、Discordの障害やDMの設定によって届かないことがある</li>
+      <li>やめたいときは、外す前に、プレミアムの人は <code>/manage</code> で解約し、<span class="chip">📋 リスト</span> から登録を外しておく（外すと操作できなくなるため）。そのあと、Discordの「設定 → 認証済みアプリ」から外す（サーバーに入れた場合は、サーバー設定の「連携サービス」から）。外したあとでも、解約やデータの削除は頼める（<a href="mailto:info@opera-ai.jp">info@opera-ai.jp</a> へメールで。くわしくは<a href="{{ '/legal/' | relative_url }}#privacy">プライバシーポリシー</a>の7。わからないときはサポートサーバーで聞いてね）</li>
       <li>どんなBotか詳しく → <a href="{{ '/' | relative_url }}">トップページ</a></li>
       <li>困ったら <a href="https://discord.gg/RdXtGzzHN" target="_blank" rel="noopener">サポートサーバー</a> へ。<a href="{{ '/legal/' | relative_url }}">利用規約・プライバシーポリシー</a></li>
     </ul>
