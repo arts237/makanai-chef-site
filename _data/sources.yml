@@ -22,3 +22,23 @@ maff-veg-freeze:
   title: "簡単な「冷凍ワザ」で、野菜を新鮮に！おいしく！（農林水産省）"
   url: https://www.maff.go.jp/j/keikaku/syokubunka/culture/wagohan/articles/2203/spe7_03.html
   checked: 2026-10-14
+nichirei-salmon:
+  short: ニチレイフーズ
+  title: "【鮭の冷凍】生鮭・塩鮭、焼き鮭も!解凍のコツや下味冷凍レシピを徹底解説（ニチレイフーズ ほほえみごはん）"
+  url: https://www.nichireifoods.co.jp/media/16906/
+  checked: 2026-10-18
+nichirei-negi:
+  short: ニチレイフーズ
+  title: "【長ねぎの保存】冷蔵で3週間もつ! 野菜ソムリエのテクニック（ニチレイフーズ ほほえみごはん）"
+  url: https://www.nichireifoods.co.jp/media/5948/
+  checked: 2026-10-18
+nichirei-soy:
+  short: ニチレイフーズ
+  title: "【納豆・油揚げ・豆腐・味噌】冷凍保存方法を解説!（ニチレイフーズ ほほえみごはん）"
+  url: https://www.nichireifoods.co.jp/media/5427/
+  checked: 2026-10-18
+nichirei-bacon:
+  short: ニチレイフーズ
+  title: "ベーコンはまとめ買いして冷凍が便利!パラパラ保存のコツや解凍テクも（ニチレイフーズ ほほえみごはん）"
+  url: https://www.nichireifoods.co.jp/media/16246/
+  checked: 2026-10-18
