@@ -42,3 +42,13 @@ nichirei-bacon:
   title: "ベーコンはまとめ買いして冷凍が便利!パラパラ保存のコツや解凍テクも（ニチレイフーズ ほほえみごはん）"
   url: https://www.nichireifoods.co.jp/media/16246/
   checked: 2026-10-18
+maff-kigen:
+  short: 農林水産省
+  title: "消費期限と賞味期限（農林水産省）"
+  url: https://www.maff.go.jp/j/syokuiku/kodomo_navi/featured/abc2.html
+  checked: 2026-10-26
+caa-kigen:
+  short: 消費者庁
+  title: "食品の期限表示（賞味期限・消費期限）の理解の促進（消費者庁）"
+  url: https://www.caa.go.jp/policies/policy/consumer_policy/information/food_loss/efforts/assets/consumer_education_cms201_260630_09.pdf
+  checked: 2026-10-26
