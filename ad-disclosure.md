@@ -2,6 +2,7 @@
 layout: default
 title: "広告表記"
 permalink: /ad-disclosure/
+last_modified_at: 2026-10-08
 ---
 
 当サイトは、Amazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイトプログラムである、Amazonアソシエイト・プログラムの参加者です。

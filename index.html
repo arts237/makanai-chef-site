@@ -1,18 +1,20 @@
 ---
 layout: lp
-title: "まかないシェフ｜賞味期限のお知らせから、使い切るレシピまで"
+title: "賞味期限管理のDiscord Bot｜お知らせから使い切りレシピまで"
 description: "賞味期限が近づいたらDiscord Botがお知らせ。そのまま使い切りレシピにたどり着けます。登録・お知らせ・内蔵レシピ検索は無料。"
 image: /assets/images/lp/hero-pc.png
 permalink: /
+last_modified_at: 2026-10-28
 ---
-<!-- 1. Hero（ご提供の画像をそのまま使用） -->
-  <section class="hero-img" aria-label="ヒーロー">
+<!-- 1. Hero（ご提供の画像をそのまま使用。画像の中の見出しと同じ文を、画面には出さずにH1として置く） -->
+  <section class="hero-img" aria-labelledby="h-top">
+    <h1 class="sr-only" id="h-top">賞味期限、もう覚えてなくていい。Discord Bot「まかないシェフ」</h1>
     <div class="hero-box hero-pc">
-      <img src="{{ '/assets/images/lp/hero-pc.png' | relative_url }}" width="1366" height="768" alt="賞味期限管理DiscordBot「まかないシェフ」。賞味期限もう覚えてなくていい。①登録 レシートをアップロード ②通知 期限が近づくとお知らせ ③レシピ 使い切りレシピを提案。設定はDiscordに追加するだけ">
+      <picture><source type="image/webp" srcset="{{ '/assets/images/lp/hero-pc.webp' | relative_url }}"><img src="{{ '/assets/images/lp/hero-pc.png' | relative_url }}" width="1366" height="768" alt="賞味期限管理DiscordBot「まかないシェフ」。賞味期限もう覚えてなくていい。①登録 レシートをアップロード ②通知 期限が近づくとお知らせ ③レシピ 使い切りレシピを提案。設定はDiscordに追加するだけ"></picture>
       <a class="btn hero-btn" href="https://discord.com/oauth2/authorize?client_id=1546140293248716831&amp;integration_type=1&amp;scope=applications.commands">まかないシェフを無料で追加する→</a>
     </div>
     <div class="hero-box hero-sp">
-      <img src="{{ '/assets/images/lp/hero-sp.png' | relative_url }}" width="1080" height="1620" alt="賞味期限管理DiscordBot「まかないシェフ」。賞味期限もう覚えてなくていい。①登録 レシートをアップロード ②通知 期限が近づくとお知らせ ③レシピ 使い切りレシピを提案。設定はDiscordに追加するだけ">
+      <picture><source type="image/webp" srcset="{{ '/assets/images/lp/hero-sp.webp' | relative_url }}"><img src="{{ '/assets/images/lp/hero-sp.png' | relative_url }}" width="1080" height="1620" alt="賞味期限管理DiscordBot「まかないシェフ」。賞味期限もう覚えてなくていい。①登録 レシートをアップロード ②通知 期限が近づくとお知らせ ③レシピ 使い切りレシピを提案。設定はDiscordに追加するだけ"></picture>
       <a class="btn hero-btn sp" href="https://discord.com/oauth2/authorize?client_id=1546140293248716831&amp;integration_type=1&amp;scope=applications.commands">まかないシェフを無料で追加する→</a>
     </div>
   </section>
@@ -177,6 +179,15 @@ permalink: /
           <span class="thumb" style="background:#FFF1D6"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM3 11h18"/></svg></span>
           <span><span class="tag">食材別</span><h3>ご飯の冷凍保存｜おいしく冷凍するコツと保存期間</h3></span>
         </a>
+      </div>
+      <div class="read-all">
+        <h3 class="read-all-h">食材別の保存方法</h3>
+        <ul class="read-all-list">
+        {%- assign _arts = site.pages | where: "category_url", "/storage/" | where_exp: "p", "p.url != '/storage/'" | sort: "order" %}
+        {%- for p in _arts %}
+          <li><a href="{{ p.url | relative_url }}">{{ p.short_title | default: p.title }}</a></li>
+        {%- endfor %}
+        </ul>
       </div>
     </div>
   </section>
