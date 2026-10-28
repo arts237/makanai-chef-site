@@ -3,6 +3,8 @@ description: "賞味期限が近づいたらDiscord Botがお知らせ。その�
 url: "https://makanai-chef.com"
 baseurl: ""
 lang: ja
+# 記事の構造化データ（Article）の発行者（publisher）のロゴ。Botのアイコン（2026-10-28 プロダクト責任者提供）
+logo: /assets/images/logo.png
 # 記事の構造化データ（Article）の著者。jekyll-seo-tag が出す
 author:
   name: "まかないシェフ運営者"
