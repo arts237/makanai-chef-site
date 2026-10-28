@@ -2,6 +2,7 @@
 layout: default
 title: "お問い合わせ"
 permalink: /contact/
+last_modified_at: 2026-10-08
 ---
 
 このサイトやまかないシェフ（Discord Bot）に関するご質問・ご要望・不具合のご報告は、以下のいずれかからお願いします。

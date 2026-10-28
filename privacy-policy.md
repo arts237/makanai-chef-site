@@ -2,6 +2,7 @@
 layout: default
 title: "プライバシーポリシー"
 permalink: /privacy-policy/
+last_modified_at: 2026-10-13
 ---
 
 このページは、このサイト（まかないシェフの情報サイト）における個人情報等の取り扱いについて説明するものです。Discord上で動作するBot「まかないシェフ」自体の[プライバシーポリシー]({{ '/legal/' | relative_url }}#privacy)は別に定めており、Botの利用に伴う情報の取り扱いはそちらが適用されます。

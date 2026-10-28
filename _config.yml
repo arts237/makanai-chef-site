@@ -1,8 +1,12 @@
-title: "まかないシェフ｜賞味期限管理・使い切りレシピ"
+title: "まかないシェフ"
 description: "賞味期限が近づいたらDiscord Botがお知らせ。そのまま使い切りレシピにたどり着けます。"
 url: "https://makanai-chef.com"
 baseurl: ""
 lang: ja
+# 記事の構造化データ（Article）の著者。jekyll-seo-tag が出す
+author:
+  name: "まかないシェフ運営者"
+  url: "https://makanai-chef.com/about/"
 plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
