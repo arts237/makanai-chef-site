@@ -1,0 +1,33 @@
+---
+layout: null
+sitemap: false
+permalink: /feed.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+{%- comment -%}
+記事（保存方法の記事。/storage/ の一覧ページは除く）だけのAtomフィード（M-005）。
+jekyll-feed は _posts しか扱えず、このサイトの記事はページなので、ここで手書きする。
+更新日は front matter の last_modified_at（無ければ date）。
+{%- endcomment -%}
+{%- assign items = site.pages | where: "category_url", "/storage/" | where_exp: "p", "p.url != '/storage/'" -%}
+{%- assign newest = "" -%}
+{%- for p in items -%}{%- assign d = p.last_modified_at | default: p.date | date: "%Y-%m-%d" -%}{%- if d > newest -%}{%- assign newest = d -%}{%- endif -%}{%- endfor %}
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja">
+  <title>{{ site.title | xml_escape }}｜保存方法の記事</title>
+  <subtitle>食材の冷凍・保存のしかたと、期限が切れてしまったときの考え方</subtitle>
+  <link href="{{ '/feed.xml' | absolute_url }}" rel="self" type="application/atom+xml"/>
+  <link href="{{ '/storage/' | absolute_url }}" rel="alternate" type="text/html"/>
+  <id>{{ '/storage/' | absolute_url }}</id>
+  <updated>{{ newest }}T00:00:00+09:00</updated>
+  <author><name>{{ site.author.name | xml_escape }}</name><uri>{{ site.author.url }}</uri></author>
+{%- for p in items %}
+  <entry>
+    <title>{{ p.title | xml_escape }}</title>
+    <link href="{{ p.url | absolute_url }}" rel="alternate" type="text/html"/>
+    <id>{{ p.url | absolute_url }}</id>
+    <published>{{ p.date | default: p.last_modified_at | date: "%Y-%m-%d" }}T00:00:00+09:00</published>
+    <updated>{{ p.last_modified_at | default: p.date | date: "%Y-%m-%d" }}T00:00:00+09:00</updated>
+    <summary>{{ p.description | xml_escape }}</summary>
+  </entry>
+{%- endfor %}
+</feed>
