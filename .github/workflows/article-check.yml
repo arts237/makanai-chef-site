@@ -37,3 +37,15 @@ jobs:
           if grep -rl "【データなし" "$RUNNER_TEMP/site"; then
             echo "::error::facts.yml にない値を参照しているページがある"; exit 1
           fi
+      - name: フィード（/feed.xml）が正しいXMLで、保存方法の記事だけを含むか
+        run: |
+          python - "$RUNNER_TEMP/site/feed.xml" <<'PY'
+          import sys, xml.etree.ElementTree as ET
+          ns = {"a": "http://www.w3.org/2005/Atom"}
+          root = ET.parse(sys.argv[1]).getroot()
+          links = [e.find("a:link", ns).get("href") for e in root.findall("a:entry", ns)]
+          bad = [u for u in links if "/storage/" not in u or u.endswith("/storage/")]
+          if not links or bad:
+              print(f"::error::feed.xml の記事が0件、または記事以外を含む: {bad}"); sys.exit(1)
+          print(f"feed.xml: {len(links)}件")
+          PY
