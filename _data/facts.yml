@@ -216,3 +216,12 @@
   value: 2〜3時間
   source: nichirei-bacon
   quote: "2〜3時間たったら"
+
+# --- 豆腐 ---
+- id: tofu.freeze.period
+  food: tofu
+  kind: period
+  label: 冷凍（未開封はパックのまま／開封後は水を張った保存容器で）
+  value: 3週間程度
+  source: nichirei-soy
+  quote: "冷凍庫で3週間程度保存可能。"
