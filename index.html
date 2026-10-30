@@ -1,10 +1,10 @@
 ---
 layout: lp
 title: "賞味期限管理のDiscord Bot｜お知らせから使い切りレシピまで"
-description: "賞味期限が近づいたらDiscord Botがお知らせ。そのまま使い切りレシピにたどり着けます。登録・お知らせ・内蔵レシピ検索は無料。"
+description: "レシートや注文履歴のスクショをDMに送ると、食材と賞味期限の目安が一覧で届き、選んで登録できるDiscord Bot。期限の前日と当日の朝にDMでお知らせ、そこから使い切りレシピへ。登録とお知らせは無料（写真とAIは回数制限あり）。"
 image: /assets/images/lp/hero-pc.png
 permalink: /
-last_modified_at: 2026-10-28
+last_modified_at: 2026-10-30
 ---
 <!-- 1. Hero（ご提供の画像をそのまま使用。画像の中の見出しと同じ文を、画面には出さずにH1として置く） -->
   <section class="hero-img" aria-labelledby="h-top">
@@ -122,19 +122,19 @@ last_modified_at: 2026-10-28
         <div class="card">
           <span class="num">①</span>
           <h3>Discordに追加</h3>
-          <p>ボタンから、自分が管理しているサーバーにまかないシェフを追加します（新しくサーバーを作ってもOK）。</p>
+          <p>ボタンから、自分のDiscordアカウントにまかないシェフを追加します。サーバーは要りません。</p>
         </div>
         <div class="card">
           <span class="num">②</span>
           <h3>食材を登録</h3>
-          <p><code>/scan receipt</code> でレシートの写真を送ると、購入日と品目から期限の目安を登録します。手入力（<code>/expiry add</code>）でもOK。</p>
+          <p>レシートや注文履歴のスクショをBotとのDMに送ると、食材と期限の目安が一覧で届き、選んで登録できます。注文履歴の住所や氏名は隠して送ってください。手入力でもOK。詳しくは「<a href="{{ '/start/' | relative_url }}">始め方</a>」へ。</p>
           <p class="note">期限は目安です。パッケージの表示もご確認ください。</p>
         </div>
         <div class="card">
           <span class="num">③</span>
           <h3>お知らせを待つ</h3>
           <p>あとはお知らせを待つだけ。期限の前日と当日の朝に、DMが届きます。</p>
-          <p class="note">サーバーの「プライバシー設定」で、サーバーメンバーからのDMを許可しておいてください。期限が切れた食材は、お知らせの翌日に自動で整理されます。</p>
+          <p class="note">サーバーに追加して使う場合は、サーバーの「プライバシー設定」で、サーバーメンバーからのDMを許可しておいてください。期限が切れた食材は、外すまでリストに「⚠️期限切れ」として残ります。</p>
         </div>
       </div>
     </div>
