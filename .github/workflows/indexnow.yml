@@ -6,9 +6,7 @@ on:
     branches: [main]
 permissions:
   contents: read
-concurrency:
-  group: indexnow
-  cancel-in-progress: false
+# concurrency は付けない（同じグループだと、待っている回が新しい回に置き換えられ、続けてマージしたときに途中のページが送られない）
 jobs:
   notify:
     runs-on: ubuntu-latest
