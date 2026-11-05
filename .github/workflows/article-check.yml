@@ -54,11 +54,11 @@ jobs:
           python - "$RUNNER_TEMP/site/faq/index.html" _data/faq.yml <<'PY'
           import json, re, sys, yaml
           html = open(sys.argv[1], encoding="utf-8").read()
-          m = re.search(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)
-          data = json.loads(m.group(1))
+          blocks = [json.loads(x) for x in re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)]
+          data = next((b for b in blocks if b.get("@type") == "FAQPage"), {})
           n = sum(len(g["items"]) for g in yaml.safe_load(open(sys.argv[2], encoding="utf-8")))
-          got = len(data["mainEntity"])
-          if data.get("@type") != "FAQPage" or got != n or any("<" in q["acceptedAnswer"]["text"] for q in data["mainEntity"]):
+          got = len(data.get("mainEntity", []))
+          if data.get("@type") != "FAQPage" or got != n or any("<" in q["acceptedAnswer"]["text"] for q in data.get("mainEntity", [])):
               print(f"::error::faq の構造化データが不正（質問 {got}/{n}）"); sys.exit(1)
           print(f"faq: {got}問")
           PY
