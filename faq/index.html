@@ -1,0 +1,50 @@
+---
+layout: default
+title: よくある質問（FAQ）｜まかないシェフ
+description: Discord Bot「まかないシェフ」のよくある質問。サーバーなしで使えるか、レシートや注文履歴の写真での登録、期限の目安、お知らせが届く時間、期限切れの扱い、冷凍・個数、無料の範囲とプレミアム、データの扱いとやめ方。
+permalink: /faq/
+last_modified_at: 2026-11-05
+---
+<style>
+.fq{max-width:720px;margin:0 auto;padding:24px 16px 64px;line-height:1.8;color:#1d1d1f}
+.fq h1{font-size:28px;font-weight:900;margin:0 0 8px}
+.fq .lead{color:#555;margin:0 0 16px}
+.fq .toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0;list-style:none}
+.fq .toc a{display:inline-block;background:#EEE8FB;color:#4b2aa6;border-radius:999px;padding:2px 12px;font-weight:700;font-size:14px;text-decoration:none}
+.fq h2{font-size:20px;margin:32px 0 10px;scroll-margin-top:16px}
+.fq details{background:#fff;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.07);padding:14px 18px;margin:0 0 12px}
+.fq summary{font-weight:700;cursor:pointer;list-style:none;display:flex;gap:10px}
+.fq summary::-webkit-details-marker{display:none}
+.fq summary::before{content:"Q";color:#6A3BDB;font-weight:900}
+.fq details[open] summary{margin-bottom:6px}
+.fq .ans{margin:0}
+.fq code{background:#F5F6F8;border-radius:6px;padding:1px 6px;font-size:.92em;word-break:break-all}
+.fq .note{font-size:13px;color:#666;margin-top:28px}
+</style>
+<div class="fq">
+<h1>よくある質問</h1>
+<p class="lead">まかないシェフ（Discord Bot）について、よくいただく質問をまとめました。はじめての方は、先に<a href="{{ '/start/' | relative_url }}">始め方</a>もどうぞ。</p>
+<ul class="toc">
+{%- for g in site.data.faq %}
+  <li><a href="#g{{ forloop.index }}">{{ g.group }}</a></li>
+{%- endfor %}
+</ul>
+{% for g in site.data.faq %}
+<h2 id="g{{ forloop.index }}">{{ g.group }}</h2>
+{%- for f in g.items %}
+<details id="{{ f.id }}">
+  <summary>{{ f.q }}</summary>
+  <p class="ans">{{ f.a }}</p>
+</details>
+{%- endfor %}
+{% endfor %}
+<p class="note">期限の目安やレシピは、食品の安全を保証するものではありません。食べられるかどうかは、商品の表示と食材の状態を見て判断してください。この内容は2026年11月5日時点のものです。</p>
+</div>
+{%- capture faq_ld -%}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{%- for g in site.data.faq -%}{%- assign go = forloop.last -%}{%- for f in g.items -%}
+{"@type":"Question","name":{{ f.q | jsonify }},"acceptedAnswer":{"@type":"Answer","text":{{ f.a | strip_html | normalize_whitespace | jsonify }}}}{% unless go and forloop.last %},{% endunless %}
+{%- endfor -%}{%- endfor -%}
+]}
+{%- endcapture %}
+<script type="application/ld+json">{{ faq_ld }}</script>
