@@ -6,6 +6,7 @@
 
 - [トップ](https://makanai-chef.com/)
 - [まかないシェフの始め方](https://makanai-chef.com/start/)
+- [よくある質問](https://makanai-chef.com/faq/)
 - [保存方法ガイド（記事の一覧）](https://makanai-chef.com/storage/)
 - [食材別 保存のコツ早見表](https://makanai-chef.com/storage/foods/)
 
