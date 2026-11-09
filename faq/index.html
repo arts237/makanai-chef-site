@@ -1,0 +1,63 @@
+---
+layout: default
+title: よくある質問｜賞味期限をDiscordのDMでお知らせするBot まかないシェフ
+description: 賞味期限をDiscordのDMでお知らせするBot「まかないシェフ」のよくある質問。サーバーなしで使えるか、レシートや注文履歴の写真での登録、期限の目安、お知らせが届く時間、期限切れの扱い、冷凍・個数、無料の範囲とプレミアム、データの扱いとやめ方。
+permalink: /faq/
+last_modified_at: 2026-11-09
+---
+<style>
+.fq{max-width:720px;margin:0 auto;padding:24px 16px 64px;line-height:1.8;color:#1d1d1f}
+.fq h1{font-size:28px;font-weight:900;margin:0 0 8px}
+.fq .lead{color:#555;margin:0 0 16px}
+.fq .toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0;list-style:none}
+.fq .toc a{display:inline-block;background:#EEE8FB;color:#4b2aa6;border-radius:999px;padding:2px 12px;font-weight:700;font-size:14px;text-decoration:none}
+.fq h2{font-size:20px;margin:32px 0 10px;scroll-margin-top:72px}
+.fq details{background:#fff;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.07);padding:14px 18px;margin:0 0 12px;scroll-margin-top:72px}
+.fq summary{font-weight:700;cursor:pointer;list-style:none;display:flex;gap:10px;align-items:baseline}
+.fq summary::-webkit-details-marker{display:none}
+.fq summary::before{content:"Q";color:#6A3BDB;font-weight:900}
+.fq summary::after{content:"＋";margin-left:auto;color:#6A3BDB;font-weight:900}
+.fq details[open] summary::after{content:"−"}
+.fq details[open] summary{margin-bottom:6px}
+.fq .ans p,.fq .ans ul{margin:0}
+.fq .ans ul{padding-left:1.2em}
+.fq code{background:#F5F6F8;border-radius:6px;padding:1px 6px;font-size:.92em;word-break:break-all}
+.fq .btn{display:inline-block;background:#111;color:#fff;text-decoration:none;font-weight:700;border-radius:999px;padding:12px 22px;margin:8px 0 4px}
+.fq .cta{background:#F5F6F8;border-radius:20px;padding:18px 20px;margin-top:28px}
+.fq .note{font-size:13px;color:#666;margin-top:20px}
+</style>
+<div class="fq">
+<h1>よくある質問</h1>
+<p class="lead">賞味期限をDiscordのDMでお知らせするBot「まかないシェフ」について、よくいただく質問をまとめました。期限を覚えておくのは、シェフの仕事です。はじめての方は、先に<a href="{{ '/start/' | relative_url }}">始め方</a>もどうぞ。</p>
+<ul class="toc">
+{%- for g in site.data.faq %}
+  <li><a href="#{{ g.slug }}">{{ g.group }}</a></li>
+{%- endfor %}
+</ul>
+{% for g in site.data.faq %}
+<h2 id="{{ g.slug }}">{{ g.group }}</h2>
+{%- for f in g.items %}
+<details id="{{ f.id }}">
+  <summary>{{ f.q }}</summary>
+  <div class="ans">{% if f.a contains '<ul>' %}{{ f.a }}{% else %}<p>{{ f.a }}</p>{% endif %}</div>
+</details>
+{%- endfor %}
+{% endfor %}
+<div class="cta">
+  <p>登録とお知らせは無料。自分のDiscordに追加するだけで、サーバーは要りません。</p>
+  <a class="btn" href="https://discord.com/oauth2/authorize?client_id=1546140293248716831&amp;integration_type=1&amp;scope=applications.commands" target="_blank" rel="noopener">無料で自分のDiscordに追加する</a>
+</div>
+<p class="note">期限の目安やレシピは、食品の安全を保証するものではありません。食べられるかどうかは、商品の表示と食材の状態を見て判断してください。この内容は2026年11月9日時点のものです。</p>
+</div>
+<script>
+(function(){function openHash(){var id=decodeURIComponent(location.hash.slice(1));if(!id)return;var el=document.getElementById(id);if(el&&el.tagName==="DETAILS"){el.open=true;el.scrollIntoView();}}
+window.addEventListener("hashchange",openHash);openHash();})();
+</script>
+{%- capture faq_ld -%}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{%- for g in site.data.faq -%}{%- assign go = forloop.last -%}{%- for f in g.items -%}
+{"@type":"Question","name":{{ f.q | jsonify }},"acceptedAnswer":{"@type":"Answer","text":{{ f.a | strip_html | normalize_whitespace | jsonify }}}}{% unless go and forloop.last %},{% endunless %}
+{%- endfor -%}{%- endfor -%}
+]}
+{%- endcapture %}
+<script type="application/ld+json">{{ faq_ld }}</script>
