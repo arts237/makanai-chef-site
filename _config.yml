@@ -22,6 +22,7 @@ amazon_tag: "makanai01-22"
 exclude:
   - wrangler.jsonc
   - scripts/
+  - assets/images/og/manifest.json
   - README.md
   - Gemfile
   - Gemfile.lock
