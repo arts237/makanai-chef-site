@@ -19,7 +19,7 @@ concurrency:
 jobs:
   build:
     if: github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
       contents: read
@@ -56,7 +56,7 @@ jobs:
   commit:
     needs: build
     if: needs.build.outputs.changed == '1'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     permissions:
       contents: write
