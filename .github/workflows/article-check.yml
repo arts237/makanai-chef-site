@@ -24,7 +24,8 @@ jobs:
       - name: シェア画像（プルリクでは作る、mainでは作り忘れがないか見る）
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk >/dev/null
+            sudo rm -f /var/lib/man-db/auto-update  # man-db の更新で apt が長く止まるのを避ける
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends -o DPkg::Lock::Timeout=120 fonts-noto-cjk >/dev/null
             python scripts/make_og.py
             if [ -n "$(git status --porcelain -- assets/images/og)" ] || ! git diff --quiet; then
               echo "::warning::シェア画像がまだコミットされていません。og-images ワークフローのコミットを待ってからマージしてください（フォークからのプルリクは手元で python scripts/make_og.py）"
