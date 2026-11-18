@@ -3,7 +3,8 @@
 
 - 対象: layout: article のページ（保存方法の記事・早見表・/storage/・/shopping/・/stock/）
 - 画像: assets/images/og/<スラッグ>.png。front matter の title（「｜」の前が見出し、後ろが補足）から作る
-- front matter に `og_photo: true` がある記事は、写真に差し替えた記事なので作り直さない（第2段）
+- front matter に `og_photo: true` がある記事は、写真に差し替えた記事なので作り直さない（第2段）。
+  image: に書いた写真をそのまま使う（Xのキャッシュを避けるため、写真は別の名前にする）
 - 各記事の front matter の image: を assets/images/og/<スラッグ>.png に書き換える
 - 作った画像の元（見出し・補足・ラベル・型の版）を assets/images/og/manifest.json に控え、
   元が変わったときだけ作り直す（フォントの版の違いで毎回差分が出ないように）
@@ -20,6 +21,7 @@ import re
 import subprocess
 import sys
 
+import yaml
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,7 +34,7 @@ ACCENT = (181, 85, 58)     # --accent
 ACCENT_SOFT = (246, 230, 222)
 LINE = (233, 224, 211)
 
-STYLE_VERSION = 1  # 画像の型を変えたら上げる（全部作り直す）
+STYLE_VERSION = 2  # 画像の型を変えたら上げる（全部作り直す）
 MANIFEST = os.path.join(OUT, "manifest.json")
 
 FONT_DIRS = ["/usr/share/fonts/opentype/noto", "/usr/share/fonts/noto-cjk"]
@@ -68,16 +70,15 @@ def pages():
         m = re.match(r"^---\n(.*?)\n---\n", txt, re.S)
         if not m or not re.search(r"^layout:\s*article\s*$", m.group(1), re.M):
             continue
-        yield rel, txt, m.group(1)
+        data = yaml.safe_load(m.group(1)) or {}
+        if data.get("layout") != "article":
+            continue
+        yield rel, txt, m.group(1), data
 
 
-def fm_value(fm, key):
-    m = re.search(rf'^{key}:\s*"?(.*?)"?\s*$', fm, re.M)
-    return m.group(1) if m else ""
-
-
-def slug_of(fm):
-    p = fm_value(fm, "permalink").strip("/")
+def slug_of(data):
+    p = str(data.get("permalink") or "").strip("/")
+    p = re.sub(r"\.html?$", "", p)
     return (p.split("/")[-1] or "index") if p else None
 
 
@@ -108,29 +109,40 @@ def render(title, sub, label):
     lw = d.textlength(label, font=lf)
     d.rounded_rectangle([pad, 70, pad + lw + 40, 70 + 52], radius=26, fill=ACCENT_SOFT)
     d.text((pad + 20, 70 + 7), label, font=lf, fill=ACCENT)
-    # 見出し（長さで字の大きさを変える）
-    # 1行に収まる大きさ（60以上）を探し、収まらなければ2行に分けて左右の長さをそろえる
+    # 見出し: 1行に収まる大きさ（60以上）を探し、収まらなければ2行に分けて左右の長さをそろえる
+    maxw = W - pad * 2
     tl = None
     for size in (84, 76, 68, 60):
         tf = f(BOLD, size)
-        if d.textlength(title, font=tf) <= W - pad * 2:
+        if d.textlength(title, font=tf) <= maxw:
             tl = [title]
             break
     if tl is None:
-        size = 72
-        tf = f(BOLD, size)
-        half = d.textlength(title, font=tf) / 2 + size
-        tl = wrap(d, title, tf, min(W - pad * 2, half))
+        for size in (72, 60):
+            tf = f(BOLD, size)
+            tl = wrap(d, title, tf, min(maxw, d.textlength(title, font=tf) / 2 + size))
+            if len(tl) <= 2:
+                break
+    if len(tl) > 2:
+        raise SystemExit(f"見出しが長すぎて画像に収まらない: {title}（「｜」で見出しと補足に分けてください）")
+    sf = f(REG, 36)
+    sl = wrap(d, sub, sf, maxw) if sub else []
+    # 下の区切り線（y=510）より上に収める。補足が入りきらないときは行を減らし、それでも無理なら省く
+    bottom = H - 140
+    def end_y(n_sub):
+        return 160 + int(size * 1.3) * len(tl) + (14 + 50 * n_sub if n_sub else 0)
+    n_sub = min(len(sl), 2)
+    while n_sub and end_y(n_sub) > bottom:
+        n_sub -= 1
+    if len(sl) > n_sub:
+        print(f"  注意: 補足を{len(sl) - n_sub}行省いた: {title}")
     y = 160
-    for line in tl[:3]:
+    for line in tl:
         d.text((pad, y), line, font=tf, fill=INK)
         y += int(size * 1.3)
-    # 補足（「｜」の後ろ）
-    if sub:
-        sf = f(REG, 36)
-        for line in wrap(d, sub, sf, W - pad * 2)[:2]:
-            d.text((pad, y + 14), line, font=sf, fill=INK_SOFT)
-            y += 50
+    for line in sl[:n_sub]:
+        d.text((pad, y + 14), line, font=sf, fill=INK_SOFT)
+        y += 50
     # 下の帯: アイコン・サイト名・ドメイン
     d.line([pad, H - 120, W - pad, H - 120], fill=LINE, width=3)
     logo = Image.open(os.path.join(ROOT, "assets", "images", "logo.png")).convert("RGBA").resize((64, 64))
@@ -152,29 +164,40 @@ def main():
     changed = []
     manifest = json.load(open(MANIFEST, encoding="utf-8")) if os.path.exists(MANIFEST) else {}
     new_manifest = {}
-    for rel, txt, fm in pages():
-        slug = slug_of(fm)
+    seen = {}
+    for rel, txt, fm, data in pages():
+        slug = slug_of(data)
         if not slug:
+            print(f"::warning::{rel} に permalink がないので、シェア画像を作れない")
             continue
+        if slug in seen:
+            sys.exit(f"::error::シェア画像の名前が重なる: {seen[slug]} と {rel}（どちらも {slug}.png）")
+        seen[slug] = rel
         img_rel = f"assets/images/og/{slug}.png"
-        if not re.search(r"^og_photo:\s*true\s*$", fm, re.M):
-            full = fm_value(fm, "title")
-            title, _, sub = full.partition("｜")
-            if not sub:
-                # 「｜」がないページは description の最初の文を補足にする
-                sub = re.split(r"(?<=。)", fm_value(fm, "description"))[0]
-            label = "保存方法ガイド" if "/storage/" in fm_value(fm, "permalink") else "まかないシェフの記事"
-            if label == title.strip():
-                label = "まかないシェフの記事"
-            key = hashlib.sha256(json.dumps([STYLE_VERSION, title.strip(), sub.strip(), label], ensure_ascii=False).encode()).hexdigest()[:16]
-            new_manifest[slug] = key
-            path = os.path.join(ROOT, img_rel)
-            if manifest.get(slug) != key or not os.path.exists(path):
-                changed.append(img_rel)
-                if not check:
-                    open(path, "wb").write(render(title.strip(), sub.strip(), label))
-        elif not os.path.exists(os.path.join(ROOT, img_rel)):
-            changed.append(img_rel + "（写真がない）")
+        if isinstance(data.get("image"), dict):
+            sys.exit(f"::error::{rel} の image: が複数行の書き方になっている（1行の image: /パス にしてください）")
+        if data.get("og_photo") is True:
+            # 第2段: 写真に差し替えた記事。image: に書いたパスの写真をそのまま使う
+            img_rel = str(data.get("image") or "").lstrip("/")
+            if not img_rel or not os.path.exists(os.path.join(ROOT, img_rel)):
+                changed.append(f"{rel}（og_photo: true だが image: の写真がない）")
+            continue
+        full = str(data.get("title") or "")
+        title, _, sub = full.partition("｜")
+        title, sub = title.strip(), sub.strip()
+        if not sub:
+            # 「｜」がないページは description の最初の文を補足にする（文末の「。」は落とす）
+            sub = re.split(r"(?<=。)", str(data.get("description") or ""))[0].rstrip("。")
+        label = "保存方法ガイド" if "/storage/" in str(data.get("permalink")) else "まかないシェフの記事"
+        if label == title:
+            label = "まかないシェフの記事"
+        key = hashlib.sha256(json.dumps([STYLE_VERSION, title, sub, label], ensure_ascii=False).encode()).hexdigest()[:16]
+        new_manifest[slug] = key
+        path = os.path.join(ROOT, img_rel)
+        if manifest.get(slug) != key or not os.path.exists(path):
+            changed.append(img_rel)
+            if not check:
+                open(path, "wb").write(render(title, sub, label))
         want = f"image: /{img_rel}"
         if re.search(r"^image:.*$", fm, re.M):
             new_fm = re.sub(r"^image:.*$", want, fm, count=1, flags=re.M)
@@ -184,13 +207,18 @@ def main():
             changed.append(rel)
             if not check:
                 open(os.path.join(ROOT, rel), "w", encoding="utf-8").write(txt.replace(fm, new_fm, 1))
-    if new_manifest != {k: v for k, v in manifest.items() if k in new_manifest} or set(manifest) - set(new_manifest):
-        if "manifest.json" not in changed:
-            changed.append("assets/images/og/manifest.json")
+    if new_manifest != manifest:
+        changed.append("assets/images/og/manifest.json")
         if not check:
             with open(MANIFEST, "w", encoding="utf-8") as fp:
                 json.dump(dict(sorted(new_manifest.items())), fp, ensure_ascii=False, indent=1)
                 fp.write("\n")
+    # 記事を消したり名前を変えたりして使われなくなった画像を消す
+    for fn in sorted(os.listdir(OUT)):
+        if fn.endswith(".png") and fn[:-4] not in new_manifest and fn[:-4] not in seen:
+            changed.append(f"assets/images/og/{fn}（使われていない）")
+            if not check:
+                os.remove(os.path.join(OUT, fn))
     if changed:
         print(("作り直しが必要: " if check else "更新: ") + ", ".join(changed))
         if check:

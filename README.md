@@ -62,6 +62,15 @@ food_tool_q: "冷凍用 保存袋 ジッパー" # その道具のAmazon検索語
 
 食材名が複数の記事に一致したときは、いちばん長く一致した語の記事を選びます（例:「豚ひき肉」は「豚」より「ひき肉」）。
 
+### シェア画像（OGP）は自動で付きます（2026-11〜）
+
+記事（`layout: article`）のシェア画像は `scripts/make_og.py` が title から作り、`assets/images/og/<スラッグ>.png` と front matter の `image:` をそろえます。
+
+- プルリクを出すと `og-images` ワークフローが画像を作り、そのプルリクにコミットします。**このコミットが入ってからマージしてください**（入る前にマージすると、記事がサイト共通の画像のままになります）。
+- 手元で作るとき: `python scripts/make_og.py`（Pillow・PyYAML と Noto Sans CJK が必要）。作り忘れの確認は `python scripts/make_og.py --check`。
+- 見出しは title の「｜」の前、補足は後ろです。見出しが2行に収まらないと失敗するので、「｜」で分けてください。
+- 写真に差し替えた記事は front matter に `og_photo: true` を書き、`image:` に写真のパスを書きます（Xのキャッシュを避けるため、写真は `<スラッグ>.png` とは別の名前にします）。
+
 ## よく使う食材（記事なし）を追加するとき
 
 `_data/foods.yml` に1件追加して push すると、「食材別 保存のコツ早見表」（`/storage/foods/`）と、買い足しガイドの候補欄（Botのリンク先）に自動で出ます。

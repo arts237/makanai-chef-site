@@ -1,16 +1,18 @@
 # 記事ごとのシェア画像（OGP）をプルリクで自動で作り、そのプルリクに足す（M-013）。
 # 新しい記事を足したり見出しを変えたりしたプルリクで、画像と front matter の image: を作り直してコミットする。
+# 安全のため2つに分ける:
+#   build  … 読み取り権限だけで、プルリクのスクリプトを動かして画像を作る（書き込みの鍵は渡さない）
+#   commit … プルリクのコードは動かさず、build が作ったファイルを受け取ってプルリクのブランチにコミットする
 # 同じリポジトリのブランチからのプルリクだけで動く（フォークからは動かない）。シークレットは使わない。
+# 注意: ここでのコミットでは article-check が動き直さない。マージは、このワークフローが終わってからにする。
 name: og-images
 on:
   pull_request:
     paths:
-      - "storage/**"
-      - "shopping/**"
-      - "stock/**"
+      - "**.html"
+      - "**.md"
       - "scripts/make_og.py"
-permissions:
-  contents: write
+      - "assets/images/logo.png"
 concurrency:
   group: og-images-${{ github.head_ref }}
   cancel-in-progress: true
@@ -19,25 +21,64 @@ jobs:
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+    outputs:
+      changed: ${{ steps.make.outputs.changed }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: ${{ github.head_ref }}
+          persist-credentials: false
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
       - run: |
-          pip install pillow==12.0.0
-          sudo apt-get install -y -qq fonts-noto-cjk >/dev/null
-      - run: python scripts/make_og.py
-      - name: 変わっていればコミットする
+          pip install pillow==12.0.0 pyyaml==6.0.2
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk >/dev/null
+      - id: make
         run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add assets/images/og storage shopping stock
-            git commit -m "シェア画像を作り直す（scripts/make_og.py）"
-            git push
-          else
-            echo "変更なし"
+          python scripts/make_og.py
+          git ls-files -m -o --exclude-standard -- assets/images/og '*.html' '*.md' > "$RUNNER_TEMP/changed.txt"
+          git ls-files -d -- assets/images/og > "$RUNNER_TEMP/deleted.txt"
+          if [ -s "$RUNNER_TEMP/changed.txt" ] || [ -s "$RUNNER_TEMP/deleted.txt" ]; then
+            echo "changed=1" >> "$GITHUB_OUTPUT"
+            mkdir -p "$RUNNER_TEMP/out"
+            cp "$RUNNER_TEMP/changed.txt" "$RUNNER_TEMP/deleted.txt" "$RUNNER_TEMP/out/"
+            tar -cf "$RUNNER_TEMP/out/files.tar" -T "$RUNNER_TEMP/changed.txt"
           fi
+      - if: steps.make.outputs.changed == '1'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: og
+          path: ${{ runner.temp }}/out
+          retention-days: 1
+  commit:
+    needs: build
+    if: needs.build.outputs.changed == '1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: og
+          path: ${{ runner.temp }}/og
+      - name: 受け取ったファイルだけを反映してコミットする（プルリクのコードは動かさない）
+        run: |
+          # 入ってよいのは 画像（assets/images/og/）と記事の .html/.md だけ。それ以外が混じっていたら止める
+          if grep -hvE '^(assets/images/og/[a-z0-9-]+\.(png|json)|[A-Za-z0-9_/-]+\.(html|md))$' "$RUNNER_TEMP/og/changed.txt" "$RUNNER_TEMP/og/deleted.txt"; then
+            echo "::error::想定外のファイルが含まれている"; exit 1
+          fi
+          tar -xf "$RUNNER_TEMP/og/files.tar" --no-same-owner --no-overwrite-dir
+          while read -r f; do [ -n "$f" ] && git rm -q -- "$f"; done < "$RUNNER_TEMP/og/deleted.txt"
+          git add -- $(cat "$RUNNER_TEMP/og/changed.txt")
+          if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "シェア画像を作り直す（scripts/make_og.py）"
+          git push
