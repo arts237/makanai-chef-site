@@ -24,8 +24,11 @@ jobs:
       - name: シェア画像（プルリクでは作る、mainでは作り忘れがないか見る）
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            sudo rm -f /var/lib/man-db/auto-update  # man-db の更新で apt が長く止まるのを避ける
-            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends -o DPkg::Lock::Timeout=120 fonts-noto-cjk >/dev/null
+            # フォントは Noto Sans CJK JP（コミットとハッシュで固定。apt は止まることがあるので使わない）
+            curl -fsSL --retry 3 -o "$RUNNER_TEMP/b.otf" https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/OTF/Japanese/NotoSansCJKjp-Bold.otf
+            curl -fsSL --retry 3 -o "$RUNNER_TEMP/r.otf" https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf
+            printf "%s  %s\n" e53dcb0dcb2922e45d01aae1ebd2f382bb81d4229b18b6b883bd170678af1f76 "$RUNNER_TEMP/b.otf" 68a3fc98800b2a27b371f2fb79991daf3633bd89309d4ffaa6946fd587f375b5 "$RUNNER_TEMP/r.otf" | sha256sum -c -
+            export OG_FONT_BOLD="$RUNNER_TEMP/b.otf" OG_FONT_REG="$RUNNER_TEMP/r.otf"; echo "OG_FONT_BOLD=$OG_FONT_BOLD" >> "$GITHUB_ENV"; echo "OG_FONT_REG=$OG_FONT_REG" >> "$GITHUB_ENV"
             python scripts/make_og.py
             if [ -n "$(git status --porcelain -- assets/images/og)" ] || ! git diff --quiet; then
               echo "::warning::シェア画像がまだコミットされていません。og-images ワークフローのコミットを待ってからマージしてください（フォークからのプルリクは手元で python scripts/make_og.py）"
